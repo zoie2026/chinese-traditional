@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>精美的传统工艺 - 小学美术</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{
+            background:#FDF8F0;
+            font-family:'Segoe UI','微软雅黑',sans-serif;
+            min-height:100vh;
+            overflow-x:hidden;
+        }
+        :root{
+            --primary:#C23B22;
+            --secondary:#1E6B5E;
+            --gold:#C9A96E;
+            --bg:#FDF8F0;
+            --border:#D4C5A9;
+            --text:#6B3E26;
+            --green:#2E5A3B;
+        }
+        .title-font{
+            font-family:'华文楷书','思源宋体',serif;
+        }
+        .btn{
+            background:var(--primary);
+            color:white;
+            border:none;
+            border-radius:16px;
+            padding:15px 30px;
+            font-size:18px;
+            cursor:pointer;
+            transition:all 0.3s;
+            min-width:140px;
+            box-shadow:0 4px 12px rgba(194,59,34,0.3);
+        }
+        .btn:hover{
+            transform:scale(1.05);
+            box-shadow:0 6px 20px rgba(194,59,34,0.4);
+        }
+        .btn-secondary{
+            background:var(--secondary);
+            box-shadow:0 4px 12px rgba(30,107,94,0.3);
+        }
+        .btn-gold{
+            background:linear-gradient(135deg, #C9A96E, #D4AF37);
+            box-shadow:0 4px 12px rgba(201,169,110,0.3);
+        }
+        .btn-green{
+            background:var(--green);
+            box-shadow:0 4px 12px rgba(46,90,59,0.3);
+        }
+        @keyframes fade-in {
+            from{opacity:0;transform:translateY(20px);}
+            to{opacity:1;transform:translateY(0);}
+        }
+        .page-content{
+            animation:fade-in 0.5s ease-out;
+        }
+        @keyframes glow {
+            0%,100%{box-shadow:0 0 20px rgba(201,169,110,0.5);}
+            50%{box-shadow:0 0 40px rgba(201,169,110,0.8);}
+        }
+        .glowing{
+            animation:glow 2s ease-in-out infinite;
+        }
+        .locked{
+            filter:grayscale(100%) brightness(0.7);
+            cursor:not-allowed;
+            pointer-events:none;
+        }
+        @keyframes medal-shine {
+            0%,100%{filter:brightness(1);}
+            50%{filter:brightness(1.3);}
+        }
+        .medal-shine{
+            animation:medal-shine 1s ease-in-out;
+        }
+        .step-indicator{
+            padding:15px 30px;border-radius:16px;background:white;box-shadow:0 4px 15px rgba(0,0,0,0.1);transition:all 0.3s;
+        }
+        .step-indicator.active{
+            background:#C9A96E;
+            transform:scale(1.1);
+        }
+        .medal-card{
+            width:200px;text-align:center;padding:20px;background:white;border-radius:24px;box-shadow:0 8px 30px rgba(0,0,0,0.1);transition:all 0.3s;
+        }
+        .medal-card:hover:not(.locked){
+            transform:scale(1.05);
+        }
+        .door-card{
+            width:220px;height:280px;border-radius:24px;background:white;box-shadow:0 8px 30px rgba(0,0,0,0.15);cursor:pointer;transition:all 0.3s;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;border:3px solid;
+        }
+        .door-card:hover:not(.locked){
+            transform:scale(1.05);
+        }
+        .teacher-panel{
+            position:fixed;top:20px;right:20px;background:rgba(0,0,0,0.8);padding:20px;border-radius:16px;z-index:1000;
+        }
+        .teacher-panel button{
+            display:block;width:100%;padding:10px 20px;margin-bottom:10px;background:#C23B22;color:white;border:none;border-radius:8px;cursor:pointer;
+        }
+        .teacher-panel button:last-child{
+            margin-bottom:0;background:#666;
+        }
+        .modal-overlay{
+            position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:flex;justify-content:center;align-items:center;z-index:1000;
+        }
+        .modal-content{
+            background:#FDF8F0;border-radius:32px;padding:40px;max-width:500px;width:90%;text-align:center;
+        }
+        .game-btn{
+            width:200px;height:120px;font-size:20px;display:flex;flex-direction:column;justify-content:center;gap:10px;
+        }
+        .work-image{
+            max-width:100%;height:auto;border-radius:12px;
+        }
+        .input-field{
+            width:100%;padding:15px;border:2px solid #C9A96E;border-radius:12px;font-size:16px;margin-bottom:15px;
+        }
+        .textarea-field{
+            width:100%;padding:15px;border:2px solid #C9A96E;border-radius:12px;font-size:16px;margin-bottom:15px;min-height:100px;resize:vertical;
+        }
+        .share-card{
+            background:white;border-radius:16px;padding:20px;margin-bottom:15px;box-shadow:0 4px 15px rgba(0,0,0,0.1);
+        }
+        .like-btn{
+            background:none;border:none;font-size:24px;cursor:pointer;transition:all 0.3s;
+        }
+        .like-btn:hover{
+            transform:scale(1.2);
+        }
+        .work-display-card{
+            background:white;border-radius:16px;padding:15px;margin-bottom:15px;box-shadow:0 4px 15px rgba(0,0,0,0.1);
+        }
+        .nav-tabs{
+            display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap;justify-content:center;
+        }
+        .nav-tab{
+            padding:10px 20px;background:white;border:2px solid #C9A96E;border-radius:12px;cursor:pointer;transition:all 0.3s;
+        }
+        .nav-tab.active{
+            background:#C9A96E;color:white;
+        }
+        @media (max-width: 768px){
+            h1{font-size:30px !important;}
+            .btn{padding:15px 25px;font-size:16px;min-width:100px;}
+            .door-card{width:150px;height:200px !important;}
+            .door-card div:first-child{font-size:40px !important;}
+            .door-card h3{font-size:18px !important;}
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 登录页 -->
+        <div id="login-page" class="page-content">
+            <div style="min-height:100vh;display:flex;justify-content:center;align-items:center;background:linear-gradient(180deg, #1E6B5E 0%, #FDF8F0 100%);">
+                <div style="background:white;border-radius:32px;padding:40px;max-width:500px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+                    <h1 class="title-font" style="font-size:42px;color:#C23B22;margin-bottom:10px;">精美的传统工艺</h1>
+                    <p style="color:#6B3E26;margin-bottom:30px;">岭南美术版 · 小学美术 · 第十一课</p>
+                    
+                    <div style="margin-bottom:20px;">
+                        <input type="text" id="student-name-input" class="input-field" placeholder="请输入你的名字">
+                    </div>
+                    
+                    <div style="display:flex;gap:15px;justify-content:center;flex-wrap:wrap;">
+                        <button class="btn" onclick="studentLogin()" style="min-width:150px;">🎓 学生进入</button>
+                        <button class="btn btn-secondary" onclick="showTeacherLogin()" style="min-width:150px;">👨‍🏫 教师登录</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 教师登录弹窗 -->
+        <div id="teacher-login-modal" class="modal-overlay" style="display:none;">
+            <div class="modal-content">
+                <h2 class="title-font" style="font-size:28px;color:#C23B22;margin-bottom:20px;">教师登录</h2>
+                <input type="password" id="teacher-password" class="input-field" placeholder="请输入密码">
+                <div style="display:flex;gap:15px;justify-content:center;">
+                    <button class="btn btn-secondary" onclick="closeTeacherLogin()">取消</button>
+                    <button class="btn" onclick="teacherLogin()">登录</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 首页 -->
+        <div id="home-page" style="display:none;">
+            <div style="min-height:100vh;background:linear-gradient(180deg, #1E6B5E 0%, #FDF8F0 50%);padding:20px;">
+                <div style="text-align:center;margin-bottom:20px;">
+                    <h1 class="title-font" style="font-size:42px;color:#C23B22;">精美的传统工艺</h1>
+                    <p style="color:#6B3E26;border-top:2px solid #C9A96E;display:inline-block;width:auto;margin:0 auto 30px;padding:8px 20px 0;">欢迎，<span id="current-student-name">同学</span>！</p>
+                </div>
+                
+                <!-- 导航标签 -->
+                <div class="nav-tabs">
+                    <div class="nav-tab active" onclick="showHomeTab('video')">🎬 视频导入</div>
+                    <div class="nav-tab" onclick="showHomeTab('gallery')">🎨 工艺馆</div>
+                    <div class="nav-tab" onclick="showHomeTab('share')">💬 分享交流</div>
+                    <div class="nav-tab" onclick="showHomeTab('games')">🎮 游戏闯关</div>
+                    <div class="nav-tab" onclick="showHomeTab('works')">🖼️ 作品展示</div>
+                    <div class="nav-tab" onclick="showHomeTab('medals')">🏅 勋章墙</div>
+                </div>
+                
+                <!-- 视频导入区 -->
+                <div id="tab-video" class="tab-content">
+                    <div style="max-width:900px;margin:0 auto;">
+                        <div style="background:#1E6B5E;border-radius:32px;padding:12px;">
+                            <div style="background:#000;border-radius:24px;aspect-ratio:16/9;display:flex;flex-direction:column;justify-content:center;align-items:center;color:white;">
+                                <div style="font-size:80px;margin-bottom:20px;">🎬</div>
+                                <p style="font-size:24px;margin-bottom:20px;">小工匠寻宝记</p>
+                                <button class="btn btn-secondary" onclick="playVideo()" style="font-size:20px;padding:15px 40px;">开始观看动画</button>
+                                <p style="margin-top:15px;font-size:14px;color:#aaa;">30秒 · 水墨剪纸动画</p>
+                            </div>
+                        </div>
+                        <div style="background:white;border-radius:16px;padding:20px;margin-top:20px;">
+                            <h3 style="color:#C23B22;margin-bottom:15px;">💭 思考问题</h3>
+                            <p style="color:#6B3E26;margin-bottom:15px;">视频中的小工匠要寻找哪四种工艺？你听说过它们吗？</p>
+                            <textarea id="video-answer" class="textarea-field" placeholder="写下你的想法..."></textarea>
+                            <button class="btn" onclick="submitVideoAnswer()">提交回答</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 工艺馆入口 -->
+                <div id="tab-gallery" class="tab-content" style="display:none;">
+                    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:30px;">
+                        <div onclick="enterGallery('zhuan')" class="door-card locked" id="door-zhuan" style="border-color:#ccc;">
+                            <div style="font-size:60px;margin-bottom:15px;">🔒</div>
+                            <h3 style="font-size:24px;color:#C23B22;margin-bottom:10px;">砖雕馆</h3>
+                            <p style="font-size:14px;color:#666;text-align:center;">完成学习后解锁</p>
+                        </div>
+                        <div onclick="enterGallery('yu')" class="door-card locked" id="door-yu" style="border-color:#ccc;">
+                            <div style="font-size:60px;margin-bottom:15px;">🔒</div>
+                            <h3 style="font-size:24px;color:#C23B22;margin-bottom:10px;">玉雕馆</h3>
+                            <p style="font-size:14px;color:#666;text-align:center;">完成学习后解锁</p>
+                        </div>
+                        <div onclick="enterGallery('mu')" class="door-card locked" id="door-mu" style="border-color:#ccc;">
+                            <div style="font-size:60px;margin-bottom:15px;">🔒</div>
+                            <h3 style="font-size:24px;color:#C23B22;margin-bottom:10px;">木雕馆</h3>
+                            <p style="font-size:14px;color:#666;text-align:center;">完成学习后解锁</p>
+                        </div>
+                        <div onclick="enterGallery('jing')" class="door-card locked" id="door-jing" style="border-color:#ccc;">
+                            <div style="font-size:60px;margin-bottom:15px;">🔒</div>
+                            <h3 style="font-size:24px;color:#C23B22;margin-bottom:10px;">景泰蓝馆</h3>
+                            <p style="font-size:14px;color:#666;text-align:center;">完成学习后解锁</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 分享交流 -->
+                <div id="tab-share" class="tab-content" style="display:none;">
+                    <div style="max-width:800px;margin:0 auto;">
+                        <div style="background:white;border-radius:16px;padding:20px;margin-bottom:20px;">
+                            <h3 style="color:#C23B22;margin-bottom:15px;">💬 讲一讲</h3>
+                            <p style="color:#6B3E26;margin-bottom:15px;">选择一件你喜欢的金属工艺品，与大家分享它的艺术特色。</p>
+                            <select id="share-artwork-select" class="input-field">
+                                <option value="">请选择作品</option>
+                                <option value="象耳炉">掐丝珐琅缠枝莲纹象耳炉</option>
+                                <option value="凤钗">铜镀金累丝点翠嵌珠石凤钗</option>
+                                <option value="耳环">金嵌珠宝点翠盘肠式耳环</option>
+                                <option value="蝴蝶簪">银镀金嵌珠宝蝴蝶簪</option>
+                            </select>
+                            <input type="text" id="share-color" class="input-field" placeholder="它的颜色（如：蓝色、金色）">
+                            <input type="text" id="share-pattern" class="input-field" placeholder="它的花纹（如：缠枝莲、蝴蝶）">
+                            <textarea id="share-beauty" class="textarea-field" placeholder="我觉得它美在哪里？"></textarea>
+                            <textarea id="share-say" class="textarea-field" placeholder="我想对古代工匠说..."></textarea>
+                            <button class="btn" onclick="submitShare()">提交分享</button>
+                        </div>
+                        <h3 style="color:#C23B22;margin-bottom:15px;text-align:center;">📋 分享墙</h3>
+                        <div id="share-wall"></div>
+                    </div>
+                </div>
+                
+                <!-- 游戏区 -->
+                <div id="tab-games" class="tab-content" style="display:none;">
+                    <div style="text-align:center;margin-bottom:30px;">
+                        <h2 class="title-font" style="font-size:32px;color:#C23B22;">🎮 游戏闯关</h2>
+                        <p style="color:#6B3E26;margin-top:10px;">完成至少2个工艺馆后解锁游戏</p>
+                    </div>
+                    <div id="games-locked" style="text-align:center;padding:40px;">
+                        <div style="font-size:60px;margin-bottom:20px;">🔒</div>
+                        <p style="font-size:18px;color:#666;">请先完成至少2个工艺馆的学习</p>
+                        <p style="color:#999;margin-top:10px;">已完成：<span id="completed-count">0</span> / 4</p>
+                    </div>
+                    <div id="games-unlocked" style="display:none;">
+                        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:20px;max-width:900px;margin:0 auto;">
+                            <button class="btn game-btn" onclick="startDetective()">
+                                <span style="font-size:36px;">🕵️</span>
+                                <span style="font-size:16px;">小侦探</span>
+                            </button>
+                            <button class="btn game-btn" onclick="startMatching()">
+                                <span style="font-size:36px;">🃏</span>
+                                <span style="font-size:16px;">连连看</span>
+                            </button>
+                            <button class="btn game-btn" onclick="startStory()">
+                                <span style="font-size:36px;">📖</span>
+                                <span style="font-size:16px;">故事大王</span>
+                            </button>
+                        </div>
+                        <div id="game-content" style="max-width:600px;margin:30px auto 0;"></div>
+                    </div>
+                </div>
+                
+                <!-- 作品展示 -->
+                <div id="tab-works" class="tab-content" style="display:none;">
+                    <div style="max-width:800px;margin:0 auto;">
+                        <div style="background:white;border-radius:16px;padding:20px;margin-bottom:20px;">
+                            <h3 style="color:#C23B22;margin-bottom:15px;">🎨 课后延伸</h3>
+                            <p style="color:#6B3E26;margin-bottom:15px;">用身边材料（橡皮泥、彩纸、轻粘土）制作一件仿"传统工艺"作品</p>
+                            <input type="text" id="work-name" class="input-field" placeholder="作品名称">
+                            <textarea id="work-desc" class="textarea-field" placeholder="创作说明"></textarea>
+                            <div style="border:2px dashed #C9A96E;border-radius:12px;padding:30px;text-align:center;margin-bottom:15px;">
+                                <p style="color:#999;">📷 点击上传作品照片</p>
+                                <input type="file" id="work-image" accept="image/*" style="display:none;" onchange="previewWorkImage(this)">
+                                <button class="btn btn-secondary" onclick="document.getElementById('work-image').click()">选择图片</button>
+                                <div id="work-preview" style="margin-top:15px;"></div>
+                            </div>
+                            <button class="btn" onclick="submitWork()">提交作品</button>
+                        </div>
+                        <h3 style="color:#C23B22;margin-bottom:15px;text-align:center;">🖼️ 小工匠作品展</h3>
+                        <div id="works-gallery"></div>
+                    </div>
+                </div>
+                
+                <!-- 勋章墙 -->
+                <div id="tab-medals" class="tab-content" style="display:none;">
+                    <div style="text-align:center;margin-bottom:30px;">
+                        <h2 class="title-font" style="font-size:32px;color:#C23B22;">🏅 勋章墙</h2>
+                    </div>
+                    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:30px;max-width:900px;margin:0 auto;">
+                        <div class="medal-card" id="medal-zhuan">
+                            <div style="font-size:60px;margin-bottom:10px;">🔒</div>
+                            <h3 style="font-size:20px;color:#C23B22;margin-bottom:10px;">???</h3>
+                            <p style="font-size:14px;color:#666;">尚未解锁</p>
+                        </div>
+                        <div class="medal-card" id="medal-yu">
+                            <div style="font-size:60px;margin-bottom:10px;">🔒</div>
+                            <h3 style="font-size:20px;color:#C23B22;margin-bottom:10px;">???</h3>
+                            <p style="font-size:14px;color:#666;">尚未解锁</p>
+                        </div>
+                        <div class="medal-card" id="medal-mu">
+                            <div style="font-size:60px;margin-bottom:10px;">🔒</div>
+                            <h3 style="font-size:20px;color:#C23B22;margin-bottom:10px;">???</h3>
+                            <p style="font-size:14px;color:#666;">尚未解锁</p>
+                        </div>
+                        <div class="medal-card" id="medal-jing">
+                            <div style="font-size:60px;margin-bottom:10px;">🔒</div>
+                            <h3 style="font-size:20px;color:#C23B22;margin-bottom:10px;">???</h3>
+                            <p style="font-size:14px;color:#666;">尚未解锁</p>
+                        </div>
+                        <div class="medal-card" id="medal-share">
+                            <div style="font-size:60px;margin-bottom:10px;">🔒</div>
+                            <h3 style="font-size:20px;color:#C23B22;margin-bottom:10px;">???</h3>
+                            <p style="font-size:14px;color:#666;">尚未解锁</p>
+                        </div>
+                        <div class="medal-card" id="medal-hero">
+                            <div style="font-size:60px;margin-bottom:10px;">🔒</div>
+                            <h3 style="font-size:20px;color:#C23B22;margin-bottom:10px;">工艺传承人</h3>
+                            <p style="font-size:14px;color:#666;">集齐5枚勋章解锁</p>
+                        </div>
+                    </div>
+                    <div style="text-align:center;margin-top:30px;">
+                        <p style="font-size:18px;color:#6B3E26;">已获得：<span id="medal-count">0</span> / 6 枚勋章</p>
+                    </div>
+                    <div style="text-align:center;margin-top:20px;">
+                        <button class="btn btn-gold locked" id="cert-btn" onclick="showCertificate()">🎁 下载传承人证书</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 工艺馆页面 -->
+        <div id="gallery-page" style="display:none;">
+            <div style="min-height:100vh;background:#FDF8F0;padding:20px;">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+                    <button class="btn" onclick="goHome()">← 返回首页</button>
+                    <h1 class="title-font" id="gallery-title" style="font-size:32px;color:#C23B22;">砖雕馆</h1>
+                    <div style="width:120px;"></div>
+                </div>
+                
+                <div id="work-selector" style="display:flex;gap:15px;margin-bottom:20px;flex-wrap:wrap;"></div>
+                
+                <div style="display:flex;justify-content:center;gap:30px;margin-bottom:20px;">
+                    <div class="step-indicator active" style="text-align:center;">
+                        <div style="font-size:24px;">🔍</div>
+                        <div style="font-size:14px;color:#666;">看局部</div>
+                    </div>
+                    <div class="step-indicator" style="text-align:center;">
+                        <div style="font-size:24px;">🖼️</div>
+                        <div style="font-size:14px;color:#666;">看全貌</div>
+                    </div>
+                    <div class="step-indicator" style="text-align:center;">
+                        <div style="font-size:24px;">📖</div>
+                        <div style="font-size:14px;color:#666;">听故事</div>
+                    </div>
+                </div>
+                
+                <div id="gallery-content" style="max-width:1200px;margin:0 auto;"></div>
+            </div>
+        </div>
+        
+        <!-- 教师后台 -->
+        <div id="teacher-page" style="display:none;">
+            <div style="min-height:100vh;background:#FDF8F0;padding:20px;">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+                    <button class="btn" onclick="logout()">← 退出登录</button>
+                    <h1 class="title-font" style="font-size:32px;color:#C23B22;">教师后台管理</h1>
+                    <div style="width:120px;"></div>
+                </div>
+                
+                <div class="nav-tabs">
+                    <div class="nav-tab active" onclick="showTeacherTab('students')">👥 学生管理</div>
+                    <div class="nav-tab" onclick="showTeacherTab('shares')">💬 分享审核</div>
+                    <div class="nav-tab" onclick="showTeacherTab('works')">🖼️ 作品审核</div>
+                    <div class="nav-tab" onclick="showTeacherTab('stats')">📊 数据统计</div>
+                </div>
+                
+                <div id="teacher-tab-students" class="teacher-tab-content">
+                    <div style="background:white;border-radius:16px;padding:20px;">
+                        <h3 style="color:#C23B22;margin-bottom:15px;">学生名单与进度</h3>
+                        <div id="student-list"></div>
+                    </div>
+                </div>
+                
+                <div id="teacher-tab-shares" class="teacher-tab-content" style="display:none;">
+                    <div style="background:white;border-radius:16px;padding:20px;">
+                        <h3 style="color:#C23B22;margin-bottom:15px;">待审核分享</h3>
+                        <div id="pending-shares"></div>
+                    </div>
+                </div>
+                
+                <div id="teacher-tab-works" class="teacher-tab-content" style="display:none;">
+                    <div style="background:white;border-radius:16px;padding:20px;">
+                        <h3 style="color:#C23B22;margin-bottom:15px;">待审核作品</h3>
+                        <div id="pending-works"></div>
+                    </div>
+                </div>
+                
+                <div id="teacher-tab-stats" class="teacher-tab-content" style="display:none;">
+                    <div style="background:white;border-radius:16px;padding:20px;">
+                        <h3 style="color:#C23B22;margin-bottom:15px;">课堂数据统计</h3>
+                        <div id="class-stats"></div>
+                    </div>
+                </div>
+                
+                <div style="text-align:center;margin-top:30px;">
+                    <button class="btn btn-secondary" onclick="resetAllProgress()">⚠️ 重置所有学生进度</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 证书弹窗 -->
+        <div id="cert-modal" class="modal-overlay" style="display:none;">
+            <div class="modal-content">
+                <h2 class="title-font" style="font-size:32px;color:#C23B22;margin-bottom:20px;">🏅 工艺传承人证书</h2>
+                <div style="background:white;border:4px solid #C9A96E;border-radius:24px;padding:30px;margin-bottom:20px;">
+                    <p style="font-size:24px;color:#C23B22;margin-bottom:10px;">证书</p>
+                    <p style="font-size:18px;color:#6B3E26;">兹证明</p>
+                    <p style="font-size:28px;color:#C23B22;margin:15px 0;font-weight:bold;" id="cert-name">同学</p>
+                    <p style="font-size:16px;color:#6B3E26;line-height:1.8;">在《精美的传统工艺》课程学习中表现优异，<br>成功集齐所有勋章，荣获"工艺传承人"称号！</p>
+                    <p style="font-size:14px;color:#999;margin-top:20px;">颁发日期：2025年</p>
+                </div>
+                <div style="display:flex;gap:15px;justify-content:center;">
+                    <button class="btn btn-secondary" onclick="closeCertificate()">关闭</button>
+                    <button class="btn btn-gold" onclick="printCertificate()">🖨️ 打印证书</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 评价弹窗 -->
+        <div id="evaluation-modal" class="modal-overlay" style="display:none;">
+            <div class="modal-content" style="max-width:600px;">
+                <h2 class="title-font" style="font-size:28px;color:#C23B22;margin-bottom:20px;">⭐ 学习评价</h2>
+                <div style="background:white;border-radius:16px;padding:20px;margin-bottom:20px;text-align:left;">
+                    <p style="color:#6B3E26;margin-bottom:15px;font-weight:bold;">请勾选你的学习收获：</p>
+                    <label style="display:block;margin-bottom:10px;cursor:pointer;">
+                        <input type="checkbox" class="self-check" value="认识了四大工艺"> 我认识了砖雕、玉雕、木雕、景泰蓝四大工艺
+                    </label>
+                    <label style="display:block;margin-bottom:10px;cursor:pointer;">
+                        <input type="checkbox" class="self-check" value="学会了三步欣赏法"> 我学会了"看局部→看全貌→听故事"三步欣赏法
+                    </label>
+                    <label style="display:block;margin-bottom:10px;cursor:pointer;">
+                        <input type="checkbox" class="self-check" value="能说出景泰蓝特色"> 我能说出景泰蓝的艺术特色
+                    </label>
+                    <label style="display:block;margin-bottom:10px;cursor:pointer;">
+                        <input type="checkbox" class="self-check" value="分享了喜欢的工艺品"> 我分享了喜欢的工艺品
+                    </label>
+                    <label style="display:block;margin-bottom:10px;cursor:pointer;">
+                        <input type="checkbox" class="self-check" value="为传统工艺自豪"> 我为中国传统工艺感到自豪
+                    </label>
+                </div>
+                <div style="display:flex;gap:15px;justify-content:center;">
+                    <button class="btn btn-secondary" onclick="closeEvaluation()">跳过</button>
+                    <button class="btn" onclick="submitEvaluation()">提交评价</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 数据
+        const works = {
+            zhuan: [{
+                name: '梁山聚义',
+                localImage: 'https://picsum.photos/seed/brick1/600/400',
+                fullImage: 'https://picsum.photos/seed/brick2/800/500',
+                story: '古代人特别喜欢水浒英雄的故事，他们把108个好汉刻在砖上，装在房子上，就像我们现在贴海报一样！这样一来，每天都能看到英雄们，学习他们团结互助的精神。',
+                localFocus: '好汉的面部表情、李逵的双斧',
+                fullFocus: '108将齐聚忠义堂的热闹场面'
+            }],
+            yu: [{
+                name: '青玉大禹治水图山子',
+                localImage: 'https://picsum.photos/seed/jade1/600/400',
+                fullImage: 'https://picsum.photos/seed/jade2/800/500',
+                story: '这是乾隆皇帝命令工匠做的，想告诉大家要像大禹一样认真治水、保护老百姓。这可是中国最大最厉害的玉雕作品呢！',
+                localFocus: '大禹手持工具的姿态、山石的皴法纹理',
+                fullFocus: '整座玉山表现崇山峻岭、凿山开渠的宏大场景'
+            }],
+            mu: [
+                {
+                    name: '郭子仪拜寿（潮州木雕）',
+                    localImage: 'https://picsum.photos/seed/wood1/600/400',
+                    fullImage: 'https://picsum.photos/seed/wood2/800/500',
+                    story: '潮州木雕特别漂亮，有很多层，还贴上金箔闪闪发光！这个作品告诉我们要孝顺长辈、家庭和睦。',
+                    tip: '工艺特点：多层镂空、髹漆贴金',
+                    localFocus: '郭子仪面部特写、寿堂陈设',
+                    fullFocus: '全家祝寿的热闹场面'
+                },
+                {
+                    name: '文姬归汉（东阳木雕）',
+                    localImage: 'https://picsum.photos/seed/wood3/600/400',
+                    fullImage: 'https://picsum.photos/seed/wood4/800/500',
+                    story: '蔡文姬从很远的地方回到祖国，这个作品告诉我们：无论走多远，家永远是最温暖的港湾。',
+                    tip: '工艺特点：保留木材本色、浮雕为主',
+                    localFocus: '蔡文姬的马车、塞外风景',
+                    fullFocus: '归汉途中的长卷式构图'
+                }
+            ],
+            jing: [
+                {
+                    name: '掐丝珐琅缠枝莲纹象耳炉',
+                    localImage: 'https://picsum.photos/seed/cloisonne1/600/400',
+                    fullImage: 'https://picsum.photos/seed/cloisonne2/800/500',
+                    story: '景泰蓝的蓝色特别美，以前只有皇宫才能用，代表着高贵和典雅。细细的金丝线加上漂亮的釉色，真是太精致了！',
+                    localFocus: '掐丝细线、蓝色珐琅釉色',
+                    fullFocus: '整器造型庄重典雅'
+                },
+                {
+                    name: '铜镀金累丝点翠嵌珠石凤钗',
+                    localImage: 'https://picsum.photos/seed/phoenix1/600/400',
+                    fullImage: 'https://picsum.photos/seed/phoenix2/800/500',
+                    story: '这是皇后娘娘戴的凤钗，金丝绕来绕去特别华丽！⚠️小朋友要记住：古代用翠鸟羽毛，现在小鸟是保护动物，我们用仿制品代替，要爱护小动物哦！',
+                    tip: '⚠️ 保护动物提示：古代使用翠鸟羽毛，现代用仿点翠代替',
+                    localFocus: '翠鸟羽毛的蓝色光泽、金丝盘绕',
+                    fullFocus: '整件凤钗的华丽造型'
+                },
+                {
+                    name: '金嵌珠宝点翠盘肠式耳环',
+                    localImage: 'https://picsum.photos/seed/earring1/600/400',
+                    fullImage: 'https://picsum.photos/seed/earring2/800/500',
+                    story: '一对美丽的耳环，左右对称特别好看。古代的娘娘们戴上它，显得更加端庄优雅。',
+                    localFocus: '翠羽镶嵌工艺',
+                    fullFocus: '一对耳环左右对称'
+                },
+                {
+                    name: '银镀金嵌珠宝蝴蝶簪',
+                    localImage: 'https://picsum.photos/seed/butterfly1/600/400',
+                    fullImage: 'https://picsum.photos/seed/butterfly2/800/500',
+                    story: '蝴蝶谐音"福叠"，是吉祥图案。这只蝴蝶簪是送给别人的美好祝福。',
+                    localFocus: '蝴蝶翅膀的翠羽',
+                    fullFocus: '整件蝴蝶簪的精美造型'
+                }
+            ]
+        };
+        
+        const categoryNames = { zhuan: '砖雕馆', yu: '玉雕馆', mu: '木雕馆', jing: '景泰蓝馆' };
+        const doorColors = { zhuan: '#8B4513', yu: '#00CED1', mu: '#DEB887', jing: '#4169E1' };
+        const doorIcons = { zhuan: '🧱', yu: '💎', mu: '🪵', jing: '🏺' };
+        
+        let currentStudent = '';
+        let currentCategory = '';
+        let currentWork = 0;
+        let currentStep = 1;
+        let isTeacher = false;
+        
+        // 登录功能
+        function studentLogin() {
+            const name = document.getElementById('student-name-input').value.trim();
+            if (!name) {
+                alert('请输入你的名字！');
+                return;
+            }
+            currentStudent = name;
+            document.getElementById('current-student-name').textContent = name;
+            document.getElementById('login-page').style.display = 'none';
+            document.getElementById('home-page').style.display = 'block';
+            loadProgress();
+            loadShares();
+            loadWorks();
+        }
+        
+        function showTeacherLogin() {
+            document.getElementById('teacher-login-modal').style.display = 'flex';
+        }
+        
+        function closeTeacherLogin() {
+            document.getElementById('teacher-login-modal').style.display = 'none';
+            document.getElementById('teacher-password').value = '';
+        }
+        
+        function teacherLogin() {
+            const password = document.getElementById('teacher-password').value;
+            if (password === 'teacher123') {
+                isTeacher = true;
+                closeTeacherLogin();
+                document.getElementById('login-page').style.display = 'none';
+                document.getElementById('teacher-page').style.display = 'block';
+                loadTeacherData();
+            } else {
+                alert('密码错误！');
+            }
+        }
+        
+        function logout() {
+            isTeacher = false;
+            currentStudent = '';
+            document.getElementById('teacher-page').style.display = 'none';
+            document.getElementById('home-page').style.display = 'none';
+            document.getElementById('login-page').style.display = 'block';
+            document.getElementById('student-name-input').value = '';
+        }
+        
+        // 标签切换
+        function showHomeTab(tabName) {
+            document.querySelectorAll('.nav-tab').forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            document.querySelectorAll('.tab-content').forEach(content => content.style.display = 'none');
+            document.getElementById('tab-' + tabName).style.display = 'block';
+            
+            if (tabName === 'games') checkGamesUnlock();
+            if (tabName === 'medals') updateMedals();
+        }
+        
+        function showTeacherTab(tabName) {
+            document.querySelectorAll('#teacher-page .nav-tab').forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            document.querySelectorAll('.teacher-tab-content').forEach(content => content.style.display = 'none');
+            document.getElementById('teacher-tab-' + tabName).style.display = 'block';
+        }
+        
+        // 进度管理
+        function loadProgress() {
+            const progress = JSON.parse(localStorage.getItem('craftProgress') || '{}');
+            const studentProgress = progress[currentStudent] || {};
+            
+            Object.keys(studentProgress).forEach(cat => {
+                if (cat !== 'shared' && cat !== 'works' && cat !== 'evaluation') {
+                    unlockDoor(cat);
+                }
+            });
+            
+            updateMedals();
+        }
+        
+        function saveProgress(category, workIndex) {
+            const progress = JSON.parse(localStorage.getItem('craftProgress') || '{}');
+            if (!progress[currentStudent]) progress[currentStudent] = {};
+            if (!progress[currentStudent][category]) progress[currentStudent][category] = [];
+            if (!progress[currentStudent][category].includes(workIndex)) {
+                progress[currentStudent][category].push(workIndex);
+            }
+            localStorage.setItem('craftProgress', JSON.stringify(progress));
+        }
+        
+        function unlockDoor(cat) {
+            const door = document.getElementById('door-' + cat);
+            if (door) {
+                door.classList.remove('locked');
+                door.classList.add('glowing');
+                door.style.borderColor = doorColors[cat];
+                door.innerHTML = `
+                    <div style="font-size:60px;margin-bottom:15px;">${doorIcons[cat]}</div>
+                    <h3 style="font-size:24px;color:#C23B22;margin-bottom:10px;">${categoryNames[cat]}</h3>
+                    <p style="font-size:14px;color:#666;text-align:center;">点击进入学习</p>
+                `;
+            }
+        }
+        
+        // 视频功能
+        function playVideo() {
+            document.getElementById('tab-video').innerHTML = `
+                <div style="max-width:900px;margin:0 auto;text-align:center;">
+                    <div style="background:#1E6B5E;border-radius:32px;padding:12px;">
+                        <div style="background:linear-gradient(135deg, #2E5A3B, #1E6B5E);border-radius:24px;aspect-ratio:16/9;display:flex;flex-direction:column;justify-content:center;align-items:center;color:white;padding:40px;">
+                            <div style="font-size:60px;margin-bottom:20px;">🎭</div>
+                            <h3 style="font-size:28px;margin-bottom:15px;">小工匠寻宝记</h3>
+                            <p style="font-size:16px;line-height:1.8;max-width:600px;">
+                                从前，有一个小工匠，他收到了一个神秘任务...<br><br>
+                                他需要收集四种神奇的工艺碎片：<br>
+                                🧱 砖雕碎片 - 记录英雄的故事<br>
+                                💎 玉雕碎片 - 展现治水的智慧<br>
+                                🪵 木雕碎片 - 雕刻生活的美好<br>
+                                🏺 景泰蓝碎片 - 镶嵌皇家的华贵<br><br>
+                                只有集齐所有碎片，他才能成为真正的"工艺传承人"！
+                            </p>
+                            <button class="btn btn-gold" onclick="unlockFirstDoor()" style="margin-top:20px;">开始寻宝之旅</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function unlockFirstDoor() {
+            unlockDoor('zhuan');
+            alert('🎉 恭喜！你解锁了第一个工艺馆：砖雕馆！');
+            showHomeTab('gallery');
+            document.querySelectorAll('.nav-tab')[1].classList.add('active');
+            document.querySelectorAll('.nav-tab')[0].classList.remove('active');
+        }
+        
+        function submitVideoAnswer() {
+            const answer = document.getElementById('video-answer').value.trim();
+            if (!answer) {
+                alert('请先写下你的想法！');
+                return;
+            }
+            // 保存回答
+            const answers = JSON.parse(localStorage.getItem('videoAnswers') || '[]');
+            answers.push({ student: currentStudent, answer: answer, time: new Date().toLocaleString() });
+            localStorage.setItem('videoAnswers', JSON.stringify(answers));
+            alert('✅ 回答已提交！');
+            document.getElementById('video-answer').value = '';
+        }
+        
+        // 工艺馆功能
+        function enterGallery(category) {
+            const door = document.getElementById('door-' + category);
+            if (door && door.classList.contains('locked')) {
+                alert('请先观看视频解锁！');
+                return;
+            }
+            currentCategory = category;
+            currentWork = 0;
+            currentStep = 1;
+            document.getElementById('home-page').style.display = 'none';
+            document.getElementById('gallery-page').style.display = 'block';
+            document.getElementById('gallery-title').textContent = categoryNames[category];
+            renderGallery();
+        }
+        
+        function goHome() {
+            document.getElementById('gallery-page').style.display = 'none';
+            document.getElementById('home-page').style.display = 'block';
+            loadProgress();
+        }
+        
+        function renderGallery() {
+            const worksList = works[currentCategory];
+            const selector = document.getElementById('work-selector');
+            selector.innerHTML = worksList.map((work, index) => 
+                `<button class="btn ${currentWork === index ? 'btn-gold' : 'btn-secondary'}" onclick="selectWork(${index})">${work.name}</button>`
+            ).join('');
+            renderStep();
+        }
+        
+        function selectWork(index) {
+            currentWork = index;
+            currentStep = 1;
+            renderGallery();
+        }
+        
+        function renderStep() {
+            const content = document.getElementById('gallery-content');
+            const work = works[currentCategory][currentWork];
+            
+            document.querySelectorAll('.step-indicator').forEach((el, i) => {
+                el.classList.toggle('active', currentStep > i);
+            });
+            
+            if (currentStep === 1) {
+                content.innerHTML = `
+                    <div style="text-align:center;">
+                        <h2 style="font-size:28px;color:#C23B22;margin-bottom:20px;">🔍 看局部</h2>
+                        <p style="font-size:18px;color:#6B3E26;margin-bottom:10px;">仔细观察局部图，猜猜这是什么工艺作品？</p>
+                        <p style="font-size:14px;color:#999;margin-bottom:20px;">看点：${work.localFocus}</p>
+                        <div style="max-width:600px;margin:0 auto;border:4px solid #C9A96E;border-radius:24px;overflow:hidden;">
+                            <img src="${work.localImage}" class="work-image">
+                        </div>
+                        <div style="margin-top:20px;">
+                            <button class="btn btn-gold" onclick="nextStep()">我猜完了，看全貌 →</button>
+                        </div>
+                    </div>
+                `;
+            } else if (currentStep === 2) {
+                content.innerHTML = `
+                    <div style="text-align:center;">
+                        <h2 style="font-size:28px;color:#C23B22;margin-bottom:20px;">🖼️ 看全貌：${work.name}</h2>
+                        <p style="font-size:14px;color:#999;margin-bottom:20px;">看点：${work.fullFocus}</p>
+                        <div style="max-width:800px;margin:0 auto;border:4px solid #C9A96E;border-radius:24px;overflow:hidden;">
+                            <img src="${work.fullImage}" class="work-image">
+                        </div>
+                        <div style="margin-top:20px;display:flex;gap:20px;justify-content:center;">
+                            <button class="btn btn-secondary" onclick="prevStep()">← 返回看局部</button>
+                            <button class="btn btn-gold" onclick="nextStep()">了解背后的故事 →</button>
+                        </div>
+                    </div>
+                `;
+            } else if (currentStep === 3) {
+                content.innerHTML = `
+                    <div style="text-align:center;">
+                        <h2 style="font-size:28px;color:#C23B22;margin-bottom:20px;">📖 听故事</h2>
+                        <div style="max-width:600px;margin:0 auto;background:white;border-radius:24px;padding:30px;box-shadow:0 8px 30px rgba(0,0,0,0.1);">
+                            <h3 style="color:#C23B22;margin-bottom:15px;">${work.name}</h3>
+                            <p style="font-size:18px;color:#6B3E26;line-height:1.8;">${work.story}</p>
+                            ${work.tip ? `<div style="margin-top:20px;padding:15px;background:#FFF8E7;border-radius:12px;">
+                                <p style="font-size:16px;color:#C23B22;">💡 ${work.tip}</p>
+                            </div>` : ''}
+                        </div>
+                        <div style="margin-top:20px;display:flex;gap:20px;justify-content:center;">
+                            <button class="btn btn-secondary" onclick="prevStep()">← 返回看全貌</button>
+                            <button class="btn btn-gold" onclick="completeWork()">完成学习 →</button>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+        
+        function nextStep() {
+            if (currentStep < 3) {
+                currentStep++;
+                renderStep();
+            }
+        }
+        
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                renderStep();
+            }
+        }
+        
+        function completeWork() {
+            saveProgress(currentCategory, currentWork);
+            const worksList = works[currentCategory];
+            
+            if (currentWork < worksList.length - 1) {
+                currentWork++;
+                currentStep = 1;
+                renderGallery();
+            } else {
+                // 解锁下一个馆
+                const order = ['zhuan', 'yu', 'mu', 'jing'];
+                const currentIndex = order.indexOf(currentCategory);
+                if (currentIndex < order.length - 1) {
+                    unlockDoor(order[currentIndex + 1]);
+                }
+                
+                alert('🎉 恭喜！你完成了' + categoryNames[currentCategory] + '的学习！');
+                updateMedals();
+                
+                // 检查是否完成所有馆
+                const progress = JSON.parse(localStorage.getItem('craftProgress') || '{}');
+                const studentProgress = progress[currentStudent] || {};
+                const completedCategories = Object.keys(studentProgress).filter(k => 
+                    k !== 'shared' && k !== 'works' && k !== 'evaluation' && studentProgress[k].length > 0
+                ).length;
+                
+                if (completedCategories >= 4) {
+                    setTimeout(() => showEvaluation(), 500);
+                }
+                
+                goHome();
+            }
+        }
+        
+        // 分享功能
+        function submitShare() {
+            const artwork = document.getElementById('share-artwork-select').value;
+            const color = document.getElementById('share-color').value.trim();
+            const pattern = document.getElementById('share-pattern').value.trim();
+            const beauty = document.getElementById('share-beauty').value.trim();
+            const say = document.getElementById('share-say').value.trim();
+            
+            if (!artwork || !color || !pattern || !beauty || !say) {
+                alert('请填写完整信息！');
+                return;
+            }
+            
+            const shares = JSON.parse(localStorage.getItem('shares') || '[]');
+            shares.push({
+                id: Date.now(),
+                student: currentStudent,
+                artwork: artwork,
+                color: color,
+                pattern: pattern,
+                beauty: beauty,
+                say: say,
+                likes: 0,
+                likedBy: [],
+                approved: false,
+                time: new Date().toLocaleString()
+            });
+            localStorage.setItem('shares', JSON.stringify(shares));
+            
+            // 标记已分享
+            const progress = JSON.parse(localStorage.getItem('craftProgress') || '{}');
+            if (!progress[currentStudent]) progress[currentStudent] = {};
+            progress[currentStudent].shared = true;
+            localStorage.setItem('craftProgress', JSON.stringify(progress));
+            
+            alert('✅ 分享已提交，等待老师审核！');
+            
+            // 清空表单
+            document.getElementById('share-artwork-select').value = '';
+            document.getElementById('share-color').value = '';
+            document.getElementById('share-pattern').value = '';
+            document.getElementById('share-beauty').value = '';
+            document.getElementById('share-say').value = '';
+            
+            updateMedals();
+        }
+        
+        function loadShares() {
+            const shares = JSON.parse(localStorage.getItem('shares') || '[]');
+            const approvedShares = shares.filter(s => s.approved);
+            const wall = document.getElementById('share-wall');
+            
+            if (approvedShares.length === 0) {
+                wall.innerHTML = '<p style="text-align:center;color:#999;">暂无分享，快来成为第一个分享的人吧！</p>';
+                return;
+            }
+            
+            wall.innerHTML = approvedShares.map(share => `
+                <div class="share-card">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+                        <span style="font-weight:bold;color:#C23B22;">${share.student}</span>
+                        <span style="color:#999;font-size:12px;">${share.time}</span>
+                    </div>
+                    <p style="color:#6B3E26;margin-bottom:5px;"><strong>作品：</strong>${share.artwork}</p>
+                    <p style="color:#6B3E26;margin-bottom:5px;"><strong>颜色：</strong>${share.color}</p>
+                    <p style="color:#6B3E26;margin-bottom:5px;"><strong>花纹：</strong>${share.pattern}</p>
+                    <p style="color:#6B3E26;margin-bottom:5px;"><strong>美在哪里：</strong>${share.beauty}</p>
+                    <p style="color:#6B3E26;margin-bottom:10px;"><strong>想对工匠说：</strong>${share.say}</p>
+                    <button class="like-btn" onclick="likeShare(${share.id})">❤️ ${share.likes}</button>
+                </div>
+            `).join('');
+        }
+        
+        function likeShare(shareId) {
+            const shares = JSON.parse(localStorage.getItem('shares') || '[]');
+            const share = shares.find(s => s.id === shareId);
+            if (share && !share.likedBy.includes(currentStudent)) {
+                share.likes++;
+                share.likedBy.push(currentStudent);
+                localStorage.setItem('shares', JSON.stringify(shares));
+                loadShares();
+            }
+        }
+        
+        // 作品展示功能
+        function previewWorkImage(input) {
+            const preview = document.getElementById('work-preview');
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.innerHTML = `<img src="${e.target.result}" style="max-width:200px;border-radius:12px;">`;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        
+        function submitWork() {
+            const name = document.getElementById('work-name').value.trim();
+            const desc = document.getElementById('work-desc').value.trim();
+            const preview = document.getElementById('work-preview').innerHTML;
+            
+            if (!name || !desc || !preview) {
+                alert('请填写完整信息并上传图片！');
+                return;
+            }
+            
+            const works = JSON.parse(localStorage.getItem('works') || '[]');
+            works.push({
+                id: Date.now(),
+                student: currentStudent,
+                name: name,
+                desc: desc,
+                image: preview,
+                likes: 0,
+                likedBy: [],
+                approved: false,
+                time: new Date().toLocaleString()
+            });
+            localStorage.setItem('works', JSON.stringify(works));
+            
+            alert('✅ 作品已提交，等待老师审核！');
+            
+            document.getElementById('work-name').value = '';
+            document.getElementById('work-desc').value = '';
+            document.getElementById('work-preview').innerHTML = '';
+            document.getElementById('work-image').value = '';
+        }
+        
+        function loadWorks() {
+            const works = JSON.parse(localStorage.getItem('works') || '[]');
+            const approvedWorks = works.filter(w => w.approved);
+            const gallery = document.getElementById('works-gallery');
+            
+            if (approvedWorks.length === 0) {
+                gallery.innerHTML = '<p style="text-align:center;color:#999;">暂无作品，快来提交你的创作吧！</p>';
+                return;
+            }
+            
+            gallery.innerHTML = approvedWorks.map(work => `
+                <div class="work-display-card">
+                    <div style="display:flex;gap:15px;flex-wrap:wrap;">
+                        <div>${work.image}</div>
+                        <div style="flex:1;min-width:200px;">
+                            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+                                <span style="font-weight:bold;color:#C23B22;">${work.student}</span>
+                                <span style="color:#999;font-size:12px;">${work.time}</span>
+                            </div>
+                            <h4 style="color:#6B3E26;margin-bottom:5px;">${work.name}</h4>
+                            <p style="color:#666;font-size:14px;">${work.desc}</p>
+                            <button class="like-btn" onclick="likeWork(${work.id})">❤️ ${work.likes}</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function likeWork(workId) {
+            const works = JSON.parse(localStorage.getItem('works') || '[]');
+            const work = works.find(w => w.id === workId);
+            if (work && !work.likedBy.includes(currentStudent)) {
+                work.likes++;
+                work.likedBy.push(currentStudent);
+                localStorage.setItem('works', JSON.stringify(works));
+                loadWorks();
+            }
+        }
+        
+        // 游戏功能
+        function checkGamesUnlock() {
+            const progress = JSON.parse(localStorage.getItem('craftProgress') || '{}');
+            const studentProgress = progress[currentStudent] || {};
+            const completedCategories = Object.keys(studentProgress).filter(k => 
+                k !== 'shared' && k !== 'works' && k !== 'evaluation' && studentProgress[k].length > 0
+            ).length;
+            
+            document.getElementById('completed-count').textContent = completedCategories;
+            
+            if (completedCategories >= 2) {
+                document.getElementById('games-locked').style.display = 'none';
+                document.getElementById('games-unlocked').style.display = 'block';
+            } else {
+                document.getElementById('games-locked').style.display = 'block';
+                document.getElementById('games-unlocked').style.display = 'none';
+            }
+        }
+        
+        function startDetective() {
+            const questions = [
+                { img: 'https://picsum.photos/seed/detective1/400/400', options: ['梁山聚义', '大禹治水', '郭子仪拜寿'], answer: 0 },
+                { img: 'https://picsum.photos/seed/detective2/400/400', options: ['梁山聚义', '大禹治水', '文姬归汉'], answer: 1 },
+                { img: 'https://picsum.photos/seed/detective3/400/400', options: ['木雕', '景泰蓝', '玉雕'], answer: 1 }
+            ];
+            
+            let current = 0;
+            let score = 0;
+            
+            function render() {
+                const q = questions[current];
+                document.getElementById('game-content').innerHTML = `
+                    <div style="text-align:center;background:white;border-radius:16px;padding:20px;">
+                        <h3 style="color:#C23B22;margin-bottom:15px;">🕵️ 小侦探 第${current+1}/${questions.length}题</h3>
+                        <div style="border:4px solid #C9A96E;border-radius:12px;overflow:hidden;margin-bottom:15px;">
+                            <img src="${q.img}" style="width:100%;height:250px;object-fit:cover;">
+                        </div>
+                        <div style="display:flex;flex-direction:column;gap:10px;">
+                            ${q.options.map((opt, i) => `<button class="btn" onclick="answerDetective(${i})">${opt}</button>`).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            window.answerDetective = function(index) {
+                if (index === questions[current].answer) score++;
+                if (current < questions.length - 1) {
+                    current++;
+                    render();
+                } else {
+                    alert(score === questions.length ? '🎉 太棒了！你是真正的小侦探！' : `继续加油！答对了${score}/${questions.length}题`);
+                    document.getElementById('game-content').innerHTML = '';
+                }
+            };
+            
+            render();
+        }
+        
+        function startMatching() {
+            const items = [
+                { id: '1', type: 'image', name: '梁山聚义', img: 'https://picsum.photos/seed/match1/200/200' },
+                { id: '1', type: 'name', name: '梁山聚义' },
+                { id: '2', type: 'image', name: '大禹治水', img: 'https://picsum.photos/seed/match2/200/200' },
+                { id: '2', type: 'name', name: '大禹治水' },
+                { id: '3', type: 'image', name: '景泰蓝', img: 'https://picsum.photos/seed/match3/200/200' },
+                { id: '3', type: 'name', name: '景泰蓝' },
+                { id: '4', type: 'image', name: '木雕', img: 'https://picsum.photos/seed/match4/200/200' },
+                { id: '4', type: 'name', name: '木雕' }
+            ];
+            
+            // 打乱顺序
+            const shuffled = [...items].sort(function() { return Math.random() - 0.5; });
+            let selected = null;
+            let matched = 0;
+            
+            function render() {
+                document.getElementById('game-content').innerHTML = `
+                    <div style="text-align:center;background:white;border-radius:16px;padding:20px;">
+                        <h3 style="color:#C23B22;margin-bottom:15px;">🃏 连连看</h3>
+                        <p style="margin-bottom:15px;">将工艺名称与作品图片配对</p>
+                        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
+                            ${shuffled.map((item, index) => `
+                                <div class="match-card" id="match-${index}" 
+                                     onclick="selectMatch(${index})" 
+                                     style="border:3px solid #C9A96E;border-radius:12px;padding:10px;cursor:pointer;${item.matched ? 'opacity:0.3;' : ''}">
+                                    ${item.type === 'image' ? `<img src="${item.img}" style="width:100%;height:80px;object-fit:cover;border-radius:8px;">` : `<p style="font-size:16px;font-weight:bold;color:#C23B22;">${item.name}</p>`}
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            window.selectMatch = function(index) {
+                if (shuffled[index].matched) return;
+                
+                const card = document.getElementById(`match-${index}`);
+                card.style.background = '#C9A96E';
+                
+                if (selected === null) {
+                    selected = index;
+                } else if (selected !== index) {
+                    const prev = shuffled[selected];
+                    const curr = shuffled[index];
+                    
+                    if (prev.id === curr.id && prev.type !== curr.type) {
+                        // 匹配成功
+                        prev.matched = true;
+                        curr.matched = true;
+                        matched++;
+                        
+                        if (matched === 4) {
+                            setTimeout(() => {
+                                alert('🎉 太棒了！全部配对成功！');
+                                document.getElementById('game-content').innerHTML = '';
+                            }, 300);
+                        }
+                    } else {
+                        // 匹配失败
+                        setTimeout(() => {
+                            document.getElementById(`match-${selected}`).style.background = 'white';
+                            card.style.background = 'white';
+                        }, 500);
+                    }
+                    selected = null;
+                    render();
+                }
+            };
+            
+            render();
+        }
+        
+        function startStory() {
+            const stories = [
+                {
+                    title: '大禹治水的故事',
+                    sentences: [
+                        '大禹带领人们开凿山脉，疏通河道',
+                        '洪水终于被治理好了',
+                        '老百姓过上了安居乐业的生活'
+                    ]
+                }
+            ];
+            
+            const story = stories[0];
+            let userOrder = [];
+            
+            function render() {
+                document.getElementById('game-content').innerHTML = `
+                    <div style="text-align:center;background:white;border-radius:16px;padding:20px;">
+                        <h3 style="color:#C23B22;margin-bottom:15px;">📖 故事大王</h3>
+                        <p style="margin-bottom:15px;">按正确顺序排列故事（点击句子）</p>
+                        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px;">
+                            ${story.sentences.map((s, i) => `
+                                <div onclick="selectStory(${i})" 
+                                     style="border:2px solid #C9A96E;border-radius:12px;padding:15px;cursor:pointer;background:${userOrder.includes(i) ? '#C9A96E;color:white;' : 'white'}">
+                                    ${s}
+                                </div>
+                            `).join('')}
+                        </div>
+                        <button class="btn" onclick="checkStoryOrder()">检查答案</button>
+                    </div>
+                `;
+            }
+            
+            window.selectStory = function(index) {
+                if (!userOrder.includes(index)) {
+                    userOrder.push(index);
+                    render();
+                }
+            };
+            
+            window.checkStoryOrder = function() {
+                if (userOrder.length !== 3) {
+                    alert('请先选择所有句子！');
+                    return;
+                }
+                
+                const correct = [0, 1, 2];
+                const isCorrect = userOrder.every((v, i) => v === correct[i]);
+                
+                if (isCorrect) {
+                    alert('🎉 太棒了！故事顺序正确！');
+                    document.getElementById('game-content').innerHTML = '';
+                } else {
+                    alert('😊 再想想看，故事应该按什么顺序发展呢？');
+                    userOrder = [];
+                    render();
+                }
+            };
+            
+            render();
+        }
+        
+        // 勋章功能
+        function updateMedals() {
+            const progress = JSON.parse(localStorage.getItem('craftProgress') || '{}');
+            const studentProgress = progress[currentStudent] || {};
+            let count = 0;
+            
+            const medals = {
+                zhuan: { name: '🧱 砖雕小匠', condition: '完成砖雕馆' },
+                yu: { name: '💎 玉雕小匠', condition: '完成玉雕馆' },
+                mu: { name: '🪵 木雕小匠', condition: '完成两件木雕' },
+                jing: { name: '🏺 景泰蓝小匠', condition: '完成景泰蓝馆' },
+                share: { name: '🎤 分享小达人', condition: '完成分享交流' }
+            };
+            
+            Object.keys(medals).forEach(key => {
+                const medal = medals[key];
+                const card = document.getElementById('medal-' + key);
+                let unlocked = false;
+                
+                if (key === 'zhuan' && studentProgress.zhuan && studentProgress.zhuan.length > 0) unlocked = true;
+                if (key === 'yu' && studentProgress.yu && studentProgress.yu.length > 0) unlocked = true;
+                if (key === 'mu' && studentProgress.mu && studentProgress.mu.length >= 2) unlocked = true;
+                if (key === 'jing' && studentProgress.jing && studentProgress.jing.length >= 4) unlocked = true;
+                if (key === 'share' && studentProgress.shared) unlocked = true;
+                
+                if (unlocked) {
+                    count++;
+                    card.innerHTML = `
+                        <div style="font-size:60px;margin-bottom:10px;" class="medal-shine">${medal.name.split(' ')[0]}</div>
+                        <h3 style="font-size:20px;color:#C23B22;margin-bottom:10px;">${medal.name.split(' ')[1]}</h3>
+                        <p style="font-size:14px;color:#666;">${medal.condition}</p>
+                    `;
+                    card.classList.remove('locked');
+                }
+            });
+            
+            // 工艺传承人勋章
+            const heroCard = document.getElementById('medal-hero');
+            const certBtn = document.getElementById('cert-btn');
+            if (count >= 5) {
+                count++;
+                heroCard.innerHTML = `
+                    <div style="font-size:60px;margin-bottom:10px;" class="medal-shine">🏅</div>
+                    <h3 style="font-size:20px;color:#C23B22;margin-bottom:10px;">工艺传承人</h3>
+                    <p style="font-size:14px;color:#666;">集齐5枚勋章</p>
+                `;
+                heroCard.classList.remove('locked');
+                certBtn.classList.remove('locked');
+            }
+            
+            document.getElementById('medal-count').textContent = count;
+        }
+        
+        // 证书功能
+        function showCertificate() {
+            document.getElementById('cert-name').textContent = currentStudent;
+            document.getElementById('cert-modal').style.display = 'flex';
+        }
+        
+        function closeCertificate() {
+            document.getElementById('cert-modal').style.display = 'none';
+        }
+        
+        function printCertificate() {
+            window.print();
+        }
+        
+        // 评价功能
+        function showEvaluation() {
+            document.getElementById('evaluation-modal').style.display = 'flex';
+        }
+        
+        function closeEvaluation() {
+            document.getElementById('evaluation-modal').style.display = 'none';
+        }
+        
+        function submitEvaluation() {
+            const checks = document.querySelectorAll('.self-check:checked');
+            const values = Array.from(checks).map(c => c.value);
+            
+            const progress = JSON.parse(localStorage.getItem('craftProgress') || '{}');
+            if (!progress[currentStudent]) progress[currentStudent] = {};
+            progress[currentStudent].evaluation = values;
+            localStorage.setItem('craftProgress', JSON.stringify(progress));
+            
+            alert('✅ 评价已提交！恭喜你完成了所有学习！');
+            closeEvaluation();
+        }
+        
+        // 教师后台功能
+        function loadTeacherData() {
+            loadStudentList();
+            loadPendingShares();
+            loadPendingWorks();
+            loadClassStats();
+        }
+        
+        function loadStudentList() {
+            const progress = JSON.parse(localStorage.getItem('craftProgress') || '{}');
+            const list = document.getElementById('student-list');
+            
+            const students = Object.keys(progress);
+            if (students.length === 0) {
+                list.innerHTML = '<p style="text-align:center;color:#999;">暂无学生数据</p>';
+                return;
+            }
+            
+            list.innerHTML = students.map(student => {
+                const p = progress[student];
+                const completed = Object.keys(p).filter(k => k !== 'shared' && k !== 'works' && k !== 'evaluation').length;
+                const medals = (p.zhuan ? 1 : 0) + (p.yu ? 1 : 0) + (p.mu ? 1 : 0) + (p.jing ? 1 : 0) + (p.shared ? 1 : 0);
+                return `
+                    <div style="border:1px solid #C9A96E;border-radius:12px;padding:15px;margin-bottom:10px;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;">
+                            <span style="font-weight:bold;color:#C23B22;">${student}</span>
+                            <span style="color:#666;">完成: ${completed}/4 馆 | 勋章: ${medals} 枚</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        function loadPendingShares() {
+            const shares = JSON.parse(localStorage.getItem('shares') || '[]');
+            const pending = shares.filter(s => !s.approved);
+            const list = document.getElementById('pending-shares');
+            
+            if (pending.length === 0) {
+                list.innerHTML = '<p style="text-align:center;color:#999;">暂无待审核分享</p>';
+                return;
+            }
+            
+            list.innerHTML = pending.map(share => `
+                <div class="share-card">
+                    <p><strong>学生：</strong>${share.student}</p>
+                    <p><strong>作品：</strong>${share.artwork}</p>
+                    <p><strong>内容：</strong>${share.beauty}</p>
+                    <div style="display:flex;gap:10px;margin-top:10px;">
+                        <button class="btn btn-green" onclick="approveShare(${share.id})">✅ 通过</button>
+                        <button class="btn btn-secondary" onclick="rejectShare(${share.id})">❌ 拒绝</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function approveShare(id) {
+            const shares = JSON.parse(localStorage.getItem('shares') || '[]');
+            const share = shares.find(s => s.id === id);
+            if (share) {
+                share.approved = true;
+                localStorage.setItem('shares', JSON.stringify(shares));
+                loadPendingShares();
+            }
+        }
+        
+        function rejectShare(id) {
+            const shares = JSON.parse(localStorage.getItem('shares') || '[]');
+            const index = shares.findIndex(s => s.id === id);
+            if (index > -1) {
+                shares.splice(index, 1);
+                localStorage.setItem('shares', JSON.stringify(shares));
+                loadPendingShares();
+            }
+        }
+        
+        function loadPendingWorks() {
+            const works = JSON.parse(localStorage.getItem('works') || '[]');
+            const pending = works.filter(w => !w.approved);
+            const list = document.getElementById('pending-works');
+            
+            if (pending.length === 0) {
+                list.innerHTML = '<p style="text-align:center;color:#999;">暂无待审核作品</p>';
+                return;
+            }
+            
+            list.innerHTML = pending.map(work => `
+                <div class="work-display-card">
+                    <div style="display:flex;gap:15px;flex-wrap:wrap;">
+                        <div>${work.image}</div>
+                        <div style="flex:1;min-width:200px;">
+                            <p><strong>学生：</strong>${work.student}</p>
+                            <p><strong>作品名：</strong>${work.name}</p>
+                            <p><strong>说明：</strong>${work.desc}</p>
+                            <div style="display:flex;gap:10px;margin-top:10px;">
+                                <button class="btn btn-green" onclick="approveWork(${work.id})">✅ 通过</button>
+                                <button class="btn btn-secondary" onclick="rejectWork(${work.id})">❌ 拒绝</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function approveWork(id) {
+            const works = JSON.parse(localStorage.getItem('works') || '[]');
+            const work = works.find(w => w.id === id);
+            if (work) {
+                work.approved = true;
+                localStorage.setItem('works', JSON.stringify(works));
+                loadPendingWorks();
+            }
+        }
+        
+        function rejectWork(id) {
+            const works = JSON.parse(localStorage.getItem('works') || '[]');
+            const index = works.findIndex(w => w.id === id);
+            if (index > -1) {
+                works.splice(index, 1);
+                localStorage.setItem('works', JSON.stringify(works));
+                loadPendingWorks();
+            }
+        }
+        
+        function loadClassStats() {
+            const progress = JSON.parse(localStorage.getItem('craftProgress') || '{}');
+            const shares = JSON.parse(localStorage.getItem('shares') || '[]');
+            const works = JSON.parse(localStorage.getItem('works') || '[]');
+            
+            const totalStudents = Object.keys(progress).length;
+            let completedAll = 0;
+            let totalShares = shares.filter(s => s.approved).length;
+            let totalWorks = works.filter(w => w.approved).length;
+            
+            Object.values(progress).forEach(p => {
+                const completed = Object.keys(p).filter(k => k !== 'shared' && k !== 'works' && k !== 'evaluation').length;
+                if (completed >= 4) completedAll++;
+            });
+            
+            document.getElementById('class-stats').innerHTML = `
+                <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;">
+                    <div style="background:#FDF8F0;border-radius:12px;padding:20px;text-align:center;">
+                        <p style="font-size:36px;color:#C23B22;font-weight:bold;">${totalStudents}</p>
+                        <p style="color:#666;">参与学生数</p>
+                    </div>
+                    <div style="background:#FDF8F0;border-radius:12px;padding:20px;text-align:center;">
+                        <p style="font-size:36px;color:#C23B22;font-weight:bold;">${completedAll}</p>
+                        <p style="color:#666;">完成全部学习</p>
+                    </div>
+                    <div style="background:#FDF8F0;border-radius:12px;padding:20px;text-align:center;">
+                        <p style="font-size:36px;color:#C23B22;font-weight:bold;">${totalShares}</p>
+                        <p style="color:#666;">已审核分享</p>
+                    </div>
+                    <div style="background:#FDF8F0;border-radius:12px;padding:20px;text-align:center;">
+                        <p style="font-size:36px;color:#C23B22;font-weight:bold;">${totalWorks}</p>
+                        <p style="color:#666;">已审核作品</p>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function resetAllProgress() {
+            if (confirm('⚠️ 确定要重置所有学生进度吗？此操作不可恢复！')) {
+                localStorage.removeItem('craftProgress');
+                localStorage.removeItem('shares');
+                localStorage.removeItem('works');
+                localStorage.removeItem('videoAnswers');
+                alert('✅ 所有数据已重置！');
+                loadTeacherData();
+            }
+        }
+        
+        // 键盘快捷键
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.shiftKey && e.key === 'T') {
+                e.preventDefault();
+                if (!isTeacher) {
+                    showTeacherLogin();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
