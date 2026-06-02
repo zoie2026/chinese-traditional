@@ -198,10 +198,13 @@
                 <!-- 导航标签 -->
                 <div class="nav-tabs">
                     <div class="nav-tab active" onclick="showHomeTab('video')">🎬 视频导入</div>
+                    <div class="nav-tab" onclick="showHomeTab('puzzle')">🧩 导学拼图</div>
                     <div class="nav-tab" onclick="showHomeTab('gallery')">🎨 工艺馆</div>
-                    <div class="nav-tab" onclick="showHomeTab('share')">💬 分享交流</div>
+                    <div class="nav-tab" onclick="showHomeTab('compare')">🏛️ 场馆PK</div>
+                    <div class="nav-tab" onclick="showHomeTab('puzzle-show')">🧩 拼图展示</div>
+                    <div class="nav-tab" onclick="showHomeTab('share')">💬 我学会了</div>
                     <div class="nav-tab" onclick="showHomeTab('games')">🎮 游戏闯关</div>
-                    <div class="nav-tab" onclick="showHomeTab('works')">🖼️ 作品展示</div>
+                    <div class="nav-tab" onclick="showHomeTab('works')">🖼️ 课后延伸</div>
                     <div class="nav-tab" onclick="showHomeTab('medals')">🏅 勋章墙</div>
                 </div>
                 
@@ -245,6 +248,18 @@
                     </div>
                 </div>
                 
+                <!-- 导学拼图 -->
+                <div id="tab-puzzle" class="tab-content" style="display:none;">
+                    <div style="max-width:800px;margin:0 auto;">
+                        <h2 style="color:#8B4513;margin-bottom:20px;">🧩 导学拼图</h2>
+                        <p style="color:#5D4037;margin-bottom:20px;">让我们通过拼图游戏来认识今天要学习的四种传统工艺！</p>
+                        <div id="puzzle-container" style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;"></div>
+                        <div id="puzzle-hint" style="margin-top:20px;padding:15px;background:#FFF8E1;border-radius:10px;color:#8B4513;">
+                            <strong>💡 提示：</strong>点击拼图块，将它们拼在一起，了解传统工艺的特点！
+                        </div>
+                    </div>
+                </div>
+                
                 <!-- 工艺馆入口 -->
                 <div id="tab-gallery" class="tab-content" style="display:none;">
                     <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:30px;">
@@ -271,12 +286,131 @@
                     </div>
                 </div>
                 
+                <!-- 场馆PK -->
+                <div id="tab-compare" class="tab-content" style="display:none;">
+                    <div style="max-width:900px;margin:0 auto;">
+                        <h2 style="color:#8B4513;margin-bottom:20px;">🏛️ 场馆PK</h2>
+                        <p style="color:#5D4037;margin-bottom:20px;">让我们来对比一下四种传统工艺的技法、材质和制作顺序！</p>
+                        
+                        <div style="overflow-x:auto;">
+                            <table style="width:100%;border-collapse:collapse;margin-bottom:20px;">
+                                <thead>
+                                    <tr style="background:#8B4513;color:white;">
+                                        <th style="border:1px solid #5D4037;padding:12px;text-align:center;">工艺类型</th>
+                                        <th style="border:1px solid #5D4037;padding:12px;text-align:center;">主要材质</th>
+                                        <th style="border:1px solid #5D4037;padding:12px;text-align:center;">制作技法</th>
+                                        <th style="border:1px solid #5D4037;padding:12px;text-align:center;">制作顺序</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="background:#FFF8E1;">
+                                        <td style="border:1px solid #5D4037;padding:12px;text-align:center;"><strong>🧱 砖雕</strong></td>
+                                        <td style="border:1px solid #5D4037;padding:12px;">青砖、灰砖</td>
+                                        <td style="border:1px solid #5D4037;padding:12px;">浮雕、透雕、线刻</td>
+                                        <td style="border:1px solid #5D4037;padding:12px;">选砖 → 构思 → 雕刻 → 打磨 → 安装</td>
+                                    </tr>
+                                    <tr style="background:white;">
+                                        <td style="border:1px solid #5D4037;padding:12px;text-align:center;"><strong>💎 玉雕</strong></td>
+                                        <td style="border:1px solid #5D4037;padding:12px;">玉石、翡翠、和田玉</td>
+                                        <td style="border:1px solid #5D4037;padding:12px;">琢磨、透雕、浮雕、镶嵌</td>
+                                        <td style="border:1px solid #5D4037;padding:12px;">选料 → 设计 → 粗雕 → 细琢 → 抛光</td>
+                                    </tr>
+                                    <tr style="background:#FFF8E1;">
+                                        <td style="border:1px solid #5D4037;padding:12px;text-align:center;"><strong>🪵 木雕</strong></td>
+                                        <td style="border:1px solid #5D4037;padding:12px;">紫檀、黄花梨、红木</td>
+                                        <td style="border:1px solid #5D4037;padding:12px;">圆雕、浮雕、透雕、镶嵌</td>
+                                        <td style="border:1px solid #5D4037;padding:12px;">选材 → 绘图 → 雕刻 → 打磨 → 上漆</td>
+                                    </tr>
+                                    <tr style="background:white;">
+                                        <td style="border:1px solid #5D4037;padding:12px;text-align:center;"><strong>🏺 景泰蓝</strong></td>
+                                        <td style="border:1px solid #5D4037;padding:12px;">铜胎、珐琅釉、金丝</td>
+                                        <td style="border:1px solid #5D4037;padding:12px;">制胎、掐丝、点蓝、烧蓝、磨光</td>
+                                        <td style="border:1px solid #5D4037;padding:12px;">制胎 → 掐丝 → 点蓝 → 烧蓝 → 磨光 → 镀金</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div style="background:#FFF8E1;border-radius:16px;padding:20px;">
+                            <h3 style="color:#C23B22;margin-bottom:15px;">💡 小知识对比</h3>
+                            <div style="display:flex;flex-wrap:wrap;gap:20px;">
+                                <div style="flex:1;min-width:200px;background:white;border-radius:10px;padding:15px;">
+                                    <div style="font-size:24px;margin-bottom:10px;">⏱️</div>
+                                    <strong>耗时对比：</strong>
+                                    <p>景泰蓝 > 玉雕 > 木雕 > 砖雕</p>
+                                </div>
+                                <div style="flex:1;min-width:200px;background:white;border-radius:10px;padding:15px;">
+                                    <div style="font-size:24px;margin-bottom:10px;">💰</div>
+                                    <strong>价值对比：</strong>
+                                    <p>玉雕 > 景泰蓝 > 木雕 > 砖雕</p>
+                                </div>
+                                <div style="flex:1;min-width:200px;background:white;border-radius:10px;padding:15px;">
+                                    <div style="font-size:24px;margin-bottom:10px;">🎯</div>
+                                    <strong>难度对比：</strong>
+                                    <p>景泰蓝 > 玉雕 > 木雕 > 砖雕</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 拼图展示 -->
+                <div id="tab-puzzle-show" class="tab-content" style="display:none;">
+                    <div style="max-width:800px;margin:0 auto;">
+                        <h2 style="color:#8B4513;margin-bottom:20px;">🧩 拼图展示</h2>
+                        <p style="color:#5D4037;margin-bottom:20px;">小组四人将思维导图合成在一行大卡纸上，进行小组展示！</p>
+                        
+                        <div style="background:#FFF8E1;border-radius:16px;padding:20px;margin-bottom:20px;">
+                            <h3 style="color:#C23B22;margin-bottom:15px;">📋 活动步骤</h3>
+                            <ol style="color:#5D4037;line-height:2;">
+                                <li><strong>第一步：分工合作</strong> - 四人小组，每人负责一块拼图内容</li>
+                                <li><strong>第二步：绘制思维导图</strong> - 每个人在自己的拼图块上绘制思维导图</li>
+                                <li><strong>第三步：拼接展示</strong> - 将四块拼图合成一行大卡纸，进行小组展示</li>
+                                <li><strong>第四步：分享交流</strong> - 向全班介绍你们小组的学习成果</li>
+                            </ol>
+                        </div>
+                        
+                        <div style="display:flex;flex-wrap:wrap;gap:15px;justify-content:center;">
+                            <div style="width:180px;background:#FF6B6B22;border:3px solid #FF6B6B;border-radius:15px;padding:15px;text-align:center;">
+                                <div style="font-size:36px;margin-bottom:10px;">🔍</div>
+                                <strong>局部记录员</strong>
+                                <p style="font-size:12px;color:#666;">记录作品细节、颜色、花纹</p>
+                            </div>
+                            <div style="width:180px;background:#4ECDC422;border:3px solid #4ECDC4;border-radius:15px;padding:15px;text-align:center;">
+                                <div style="font-size:36px;margin-bottom:10px;">📷</div>
+                                <strong>形貌记录员</strong>
+                                <p style="font-size:12px;color:#666;">记录整体形状、材质特点</p>
+                            </div>
+                            <div style="width:180px;background:#45B7D122;border:3px solid #45B7D1;border-radius:15px;padding:15px;text-align:center;">
+                                <div style="font-size:36px;margin-bottom:10px;">📖</div>
+                                <strong>故事记录员</strong>
+                                <p style="font-size:12px;color:#666;">记录作品故事、文化寓意</p>
+                            </div>
+                            <div style="width:180px;background:#96CEB422;border:3px solid #96CEB4;border-radius:15px;padding:15px;text-align:center;">
+                                <div style="font-size:36px;margin-bottom:10px;">👷</div>
+                                <strong>技法观察员</strong>
+                                <p style="font-size:12px;color:#666;">记录制作技法、步骤流程</p>
+                            </div>
+                        </div>
+                        
+                        <div style="background:white;border-radius:16px;padding:20px;margin-top:20px;">
+                            <h3 style="color:#C23B22;margin-bottom:15px;">🎯 展示要求</h3>
+                            <ul style="color:#5D4037;line-height:2;">
+                                <li>✓ 每位组员介绍自己负责的部分</li>
+                                <li>✓ 小组共同完成完整的思维导图</li>
+                                <li>✓ 声音洪亮，表达清晰</li>
+                                <li>✓ 可以配合手势和肢体语言</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
                 <!-- 分享交流 -->
                 <div id="tab-share" class="tab-content" style="display:none;">
                     <div style="max-width:800px;margin:0 auto;">
                         <div style="background:white;border-radius:16px;padding:20px;margin-bottom:20px;">
                             <h3 style="color:#C23B22;margin-bottom:15px;">💬 讲一讲</h3>
-                            <p style="color:#6B3E26;margin-bottom:15px;">选择一件你喜欢的金属工艺品，与大家分享它的艺术特色。</p>
+                            <p style="color:#6B3E26;margin-bottom:15px;">选择一件你喜欢的工艺品，与大家分享它的艺术特色。</p>
                             <select id="share-artwork-select" class="input-field">
                                 <option value="">请选择作品</option>
                                 <option value="象耳炉">掐丝珐琅缠枝莲纹象耳炉</option>
@@ -351,40 +485,51 @@
                     <div style="text-align:center;margin-bottom:30px;">
                         <h2 class="title-font" style="font-size:32px;color:#C23B22;">🏅 勋章墙</h2>
                     </div>
-                    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:30px;max-width:900px;margin:0 auto;">
-                        <div class="medal-card" id="medal-zhuan">
+                    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:30px;max-width:1000px;margin:0 auto;">
+                        <div class="medal-card" id="medal-gallery">
                             <div style="font-size:60px;margin-bottom:10px;">🔒</div>
-                            <h3 style="font-size:20px;color:#C23B22;margin-bottom:10px;">???</h3>
-                            <p style="font-size:14px;color:#666;">尚未解锁</p>
+                            <h3 style="font-size:18px;color:#C23B22;margin-bottom:10px;">分馆讲解勋章</h3>
+                            <p style="font-size:14px;color:#666;">完成所有工艺馆学习</p>
                         </div>
-                        <div class="medal-card" id="medal-yu">
+                        <div class="medal-card" id="medal-mindmap-1">
                             <div style="font-size:60px;margin-bottom:10px;">🔒</div>
-                            <h3 style="font-size:20px;color:#C23B22;margin-bottom:10px;">???</h3>
-                            <p style="font-size:14px;color:#666;">尚未解锁</p>
+                            <h3 style="font-size:18px;color:#C23B22;margin-bottom:10px;">思维导图勋章 ①</h3>
+                            <p style="font-size:14px;color:#666;">局部记录员</p>
                         </div>
-                        <div class="medal-card" id="medal-mu">
+                        <div class="medal-card" id="medal-mindmap-2">
                             <div style="font-size:60px;margin-bottom:10px;">🔒</div>
-                            <h3 style="font-size:20px;color:#C23B22;margin-bottom:10px;">???</h3>
-                            <p style="font-size:14px;color:#666;">尚未解锁</p>
+                            <h3 style="font-size:18px;color:#C23B22;margin-bottom:10px;">思维导图勋章 ②</h3>
+                            <p style="font-size:14px;color:#666;">形貌记录员</p>
                         </div>
-                        <div class="medal-card" id="medal-jing">
+                        <div class="medal-card" id="medal-mindmap-3">
                             <div style="font-size:60px;margin-bottom:10px;">🔒</div>
-                            <h3 style="font-size:20px;color:#C23B22;margin-bottom:10px;">???</h3>
-                            <p style="font-size:14px;color:#666;">尚未解锁</p>
+                            <h3 style="font-size:18px;color:#C23B22;margin-bottom:10px;">思维导图勋章 ③</h3>
+                            <p style="font-size:14px;color:#666;">故事记录员</p>
+                        </div>
+                        <div class="medal-card" id="medal-mindmap-4">
+                            <div style="font-size:60px;margin-bottom:10px;">🔒</div>
+                            <h3 style="font-size:18px;color:#C23B22;margin-bottom:10px;">思维导图勋章 ④</h3>
+                            <p style="font-size:14px;color:#666;">技法观察员</p>
                         </div>
                         <div class="medal-card" id="medal-share">
                             <div style="font-size:60px;margin-bottom:10px;">🔒</div>
-                            <h3 style="font-size:20px;color:#C23B22;margin-bottom:10px;">???</h3>
-                            <p style="font-size:14px;color:#666;">尚未解锁</p>
+                            <h3 style="font-size:18px;color:#C23B22;margin-bottom:10px;">"我学会了"表达勋章</h3>
+                            <p style="font-size:14px;color:#666;">完成分享交流</p>
+                        </div>
+                        <div class="medal-card" id="medal-game">
+                            <div style="font-size:60px;margin-bottom:10px;">🔒</div>
+                            <h3 style="font-size:18px;color:#C23B22;margin-bottom:10px;">游戏达人勋章</h3>
+                            <p style="font-size:14px;color:#666;">完成所有游戏挑战</p>
                         </div>
                         <div class="medal-card" id="medal-hero">
                             <div style="font-size:60px;margin-bottom:10px;">🔒</div>
-                            <h3 style="font-size:20px;color:#C23B22;margin-bottom:10px;">工艺传承人</h3>
-                            <p style="font-size:14px;color:#666;">集齐5枚勋章解锁</p>
+                            <h3 style="font-size:18px;color:#C23B22;margin-bottom:10px;">工艺传承人</h3>
+                            <p style="font-size:14px;color:#666;">集齐所有勋章解锁</p>
                         </div>
                     </div>
                     <div style="text-align:center;margin-top:30px;">
-                        <p style="font-size:18px;color:#6B3E26;">已获得：<span id="medal-count">0</span> / 6 枚勋章</p>
+                        <p style="font-size:18px;color:#6B3E26;">已获得：<span id="medal-count">0</span> / 8 枚勋章</p>
+                        <p style="font-size:14px;color:#999;margin-top:5px;">🎯 思维导图勋章共4枚，按小组表现获得</p>
                     </div>
                     <div style="text-align:center;margin-top:20px;">
                         <button class="btn btn-gold locked" id="cert-btn" onclick="showCertificate()">🎁 下载传承人证书</button>
@@ -420,6 +565,10 @@
                     <div class="step-indicator" style="text-align:center;">
                         <div style="font-size:24px;">🎬</div>
                         <div style="font-size:14px;color:#666;">看视频</div>
+                    </div>
+                    <div class="step-indicator" style="text-align:center;">
+                        <div style="font-size:24px;">⚙️</div>
+                        <div style="font-size:14px;color:#666;">技法工序</div>
                     </div>
                 </div>
                 
@@ -535,7 +684,9 @@
                 video: '砖雕视频.mp4',
                 story: '以前的人盖大房子，爱把墙打扮得美美的，这个砖雕就像墙上的漂亮画，让房子更好看。雕刻的叔叔想展示自己的好手艺，喜欢《水浒传》里那些团结、讲义气的好汉，把他们的故事刻在墙上，让来这儿的人都能看见，记住这些好人好事。而且陈家祠是很多同姓人一起盖的，像个大家庭，刻上好汉们聚在一起的样子，就是想告诉大家：“我们要像他们一样团结呀！”',
                 localFocus: '好汉的面部表情、李逵的双斧',
-                fullFocus: '108将齐聚忠义堂的热闹场面'
+                fullFocus: '108将齐聚忠义堂的热闹场面',
+                technique: '砖雕主要采用浮雕和透雕技法。浮雕是在砖面上雕刻出凸起的图案，有浅浮雕和高浮雕之分；透雕则是将砖的某些部分镂空，形成立体的艺术效果。',
+                process: '<li>选砖：挑选质地细腻、硬度适中的青砖</li><li>构图：在砖面上画出图案轮廓</li><li>打坯：用大凿子凿出大体轮廓</li><li>细雕：用小刻刀精雕细琢细节</li><li>打磨：用砂纸打磨光滑</li><li>安装：将雕刻好的砖安装到建筑上</li>'
             }],
             yu: [{
                 name: '青玉大禹治水图山子',
@@ -544,7 +695,9 @@
                 video: '玉雕视频.mp4',
                 story: '这是乾隆皇帝命令工匠做的，这块玉上刻着好多小人儿。他们有的挥锄头，有的搬石头，还有人在挖河沟，个个都很卖力。这讲的是大禹治水的故事哦。以前洪水淹了家，大禹就带着大家一起干活，挖河道、挡洪水，忙了好多年。把这个故事刻在美玉上，一是想让大家都记得大禹的勇敢，保护百姓和大家的团结，学他们不怕困难；二是这块玉雕特别精致，也能让人看到雕刻手艺多厉害。',
                 localFocus: '大禹手持工具的姿态、山石的皴法纹理',
-                fullFocus: '整座玉山表现崇山峻岭、凿山开渠的宏大场景'
+                fullFocus: '整座玉山表现崇山峻岭、凿山开渠的宏大场景',
+                technique: '玉雕技法包括浮雕、透雕、圆雕、阴刻等。圆雕是立体雕刻，从各个角度都能欣赏；浮雕是在玉面上雕刻凸起图案；透雕是将玉料镂空；阴刻是在玉面上刻出凹线图案。',
+                process: '<li>选料：挑选质地优良的玉石原料</li><li>设计：根据玉料形状设计图案</li><li>琢磨：用金刚砂工具打磨出大体形状</li><li>雕刻：用各种刻刀精雕细琢</li><li>抛光：用细砂纸和抛光粉打磨光滑</li><li>配座：为作品配上底座</li>'
             }],
             mu: [
                 {
@@ -555,7 +708,9 @@
                     story: '核雕是们在小小的橄榄核上刻出精细的图画！这个核舟虽小，却刻出了船篷、窗户、花蓬、舵杆等，最神奇的是船背上还刻着苏东坡的《前赤壁赋》！古代工匠的眼睛简直比绣花针还细呀！',
                     tip: '工艺特点：小材大用、细如发丝',
                     localFocus: '核舟船身的精细雕刻、窗户花纹',
-                    fullFocus: '核舟在波浪中前进的完整场景'
+                    fullFocus: '核舟在波浪中前进的完整场景',
+                    technique: '核雕是微型雕刻艺术，需要极高的精细度。主要技法有浮雕、透雕、圆雕，雕刻时需要借助放大镜进行操作。',
+                    process: '<li>选核：挑选形状合适、质地坚实的橄榄核</li><li>画稿：在核上画出设计草图</li><li>打坯：用微型刻刀刻出大体轮廓</li><li>细雕：精雕细节部分</li><li>打磨：用细砂纸打磨</li><li>抛光：上蜡抛光使表面光亮</li>'
                 },
                 {
                     name: '文姬归汉（东阳木雕）',
@@ -565,7 +720,9 @@
                     story: '蔡文姬从很远的地方回到祖国，这个作品告诉我们：无论走多远，家永远是最温暖的港湾。',
                     tip: '工艺特点：保留木材本色、浮雕为主',
                     localFocus: '蔡文姬的马车、塞外风景',
-                    fullFocus: '归汉途中的长卷式构图'
+                    fullFocus: '归汉途中的长卷式构图',
+                    technique: '东阳木雕以浮雕为主，有深浮雕和浅浮雕之分。还运用透雕、圆雕等技法，注重保留木材的天然纹理和色泽。',
+                    process: '<li>选材：挑选纹理美观的木材</li><li>设计：绘制设计图</li><li>打坯：用凿子凿出大致形状</li><li>细雕：用刻刀精雕细琢</li><li>修光：打磨光滑</li><li>上蜡：涂上保护蜡</li>'
                 }
             ],
             jing: [
@@ -576,7 +733,9 @@
                     video: '什么是景泰蓝.mp4',
                     story: '掐丝珐琅缠枝莲纹象耳炉，耳朵是象鼻子形状，身上有缠缠绵绵的莲花纹。大象在古代代表吉祥，莲花象征干净美好。把它们刻在香炉上，是想让它又好看又有好寓意。工匠们用精巧手艺做出来，既方便烧香，又能让人看到漂亮的花纹，记住这些美好的愿望呀。',
                     localFocus: '掐丝细线、蓝色珐琅釉色',
-                    fullFocus: '整器造型庄重典雅'
+                    fullFocus: '整器造型庄重典雅',
+                    technique: '景泰蓝（掐丝珐琅）的核心技法是掐丝和点蓝。掐丝是将铜丝弯成各种图案粘在铜胎上；点蓝是将珐琅釉料填入丝框内。',
+                    process: '<li>制胎：用铜制成器物形状</li><li>掐丝：将铜丝弯成图案粘在胎上</li><li>点蓝：将珐琅釉料填入丝框</li><li>烧蓝：放入窑中烧制使釉料熔化</li><li>磨光：打磨平整</li><li>镀金：在表面镀上金层</li>'
                 },
                 {
                     name: '铜镀金累丝点翠嵌珠石凤钿',
@@ -586,7 +745,9 @@
                     story: '这是皇后娘娘戴的凤钿，金丝绕来绕去特别华丽！⚠️小朋友要记住：古代用翠鸟羽毛，现在小鸟是保护动物，我们用仿制品代替，要爱护小动物哦！',
                     tip: '⚠️ 保护动物提示：古代使用翠鸟羽毛，现代用仿点翠代替',
                     localFocus: '翠鸟羽毛的蓝色光泽、金丝盘绕',
-                    fullFocus: '整件凤钿的华丽造型'
+                    fullFocus: '整件凤钿的华丽造型',
+                    technique: '点翠工艺是将翠鸟羽毛粘贴在金属底座上。累丝工艺是将金丝编织成各种图案。这两种工艺结合，制作出华丽的首饰。',
+                    process: '<li>制胎：用铜制成首饰底座</li><li>累丝：将金丝编织成图案</li><li>点翠：将翠鸟羽毛粘贴上去</li><li>镶嵌：将珠宝镶嵌到首饰上</li><li>镀金：表面镀上金层</li><li>组装：将各部分组装起来</li>'
                 },
                 {
                     name: '金嵌珠宝点翠盘长式耳环',
@@ -595,7 +756,9 @@
                     story: '这对耳环，点翠像片晴空，镶着亮珠，还有金线盘长结。盘长寓意长长久久，点翠象征明朗，珠子代表团圆。从前姑娘戴它，藏着对亲情友情长久、生活明亮的期盼，就像揣着小小的幸运符，盼着日子越来越好。',
                     localFocus: '翠羽镶嵌工艺',
                     fullFocus: '一对耳环左右对称',
-                    skipVideo: true
+                    skipVideo: true,
+                    technique: '点翠和镶嵌工艺的结合，将翠鸟羽毛和珠宝巧妙地组合在一起，制作出精美的耳环。',
+                    process: '<li>制模：制作耳环的金属框架</li><li>点翠：粘贴翠鸟羽毛</li><li>镶嵌：将珍珠、宝石镶嵌上去</li><li>镀金：表面镀金</li><li>组装：将耳环挂钩安装好</li>'
                 },
                 {
                     name: '银镀金嵌珠宝蝴蝶簪',
@@ -604,7 +767,9 @@
                     story: '蝴蝶谐音"福叠"，是吉祥图案。这只蝴蝶簪是送给别人的美好祝福。',
                     localFocus: '蝴蝶翅膀的翠羽',
                     fullFocus: '整件蝴蝶簪的精美造型',
-                    skipVideo: true
+                    skipVideo: true,
+                    technique: '以银为底，采用錾刻、点翠、镶嵌等多种技法，将蝴蝶造型制作得栩栩如生。',
+                    process: '<li>制坯：用银制作蝴蝶形状</li><li>錾刻：雕刻蝴蝶花纹</li><li>点翠：在翅膀上粘贴翠羽</li><li>镶嵌：镶嵌珠宝</li><li>镀金：表面镀金</li><li>装簪：安装簪杆</li>'
                 }
             ]
         };
@@ -676,6 +841,95 @@
             
             if (tabName === 'games') checkGamesUnlock();
             if (tabName === 'medals') updateMedals();
+            if (tabName === 'puzzle') initPuzzle();
+            if (tabName === 'compare') initCompare();
+            if (tabName === 'puzzle-show') initPuzzleShow();
+        }
+        
+        // 场馆PK初始化
+        function initCompare() {
+            // 场馆PK页面为静态内容，无需额外初始化
+        }
+        
+        // 拼图展示初始化
+        function initPuzzleShow() {
+            // 拼图展示页面为静态内容，无需额外初始化
+        }
+        
+        // 导学拼图
+        function initPuzzle() {
+            const container = document.getElementById('puzzle-container');
+            if (!container) return;
+            
+            const roles = [
+                { 
+                    name: '局部记录员', 
+                    title: '细节小放大镜', 
+                    icon: '🔍', 
+                    desc: '观察细节、颜色、花纹',
+                    task: '像用放大镜看蚂蚁一样，盯着作品的小角落！\n• 颜色：作品用了哪些颜色？\n• 花纹：找找有什么特别的图案？\n• 简笔画：试着画一个小部位！',
+                    color: '#FF6B6B' 
+                },
+                { 
+                    name: '形貌记录员', 
+                    title: '整体小相机', 
+                    icon: '📷', 
+                    desc: '观察整体形状、猜材质',
+                    task: '把作品当成一个小模特，给它拍张"全身照"！\n• 画轮廓：用简单线条画作品的整体形状\n• 猜材质：它最像生活中的什么？',
+                    color: '#4ECDC4' 
+                },
+                { 
+                    name: '故事记录员', 
+                    title: '情节记录员', 
+                    icon: '📖', 
+                    desc: '找故事、讲寓意',
+                    task: '从作品里找"小剧情"，当一回小小说书人！\n• 故事：作品讲了什么故事？\n• 寓意：这些图案有什么含义？',
+                    color: '#45B7D1' 
+                },
+                { 
+                    name: '技法观察员', 
+                    title: '小手工艺人', 
+                    icon: '👷', 
+                    desc: '猜技法、想步骤',
+                    task: '假装自己是做这件作品的小工匠！\n• 技法：用了哪些制作方法？\n• 步骤：想想怎么做出来的？',
+                    color: '#96CEB4' 
+                }
+            ];
+            
+            container.innerHTML = '';
+            
+            roles.forEach((role, index) => {
+                const puzzlePiece = document.createElement('div');
+                puzzlePiece.className = 'puzzle-piece';
+                puzzlePiece.style.cssText = `
+                    width: 180px;
+                    height: 200px;
+                    background: linear-gradient(135deg, ${role.color}22, ${role.color}44);
+                    border: 3px solid ${role.color};
+                    border-radius: 15px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    transition: all 0.3s;
+                    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                `;
+                puzzlePiece.innerHTML = `
+                    <div style="font-size:45px;margin-bottom:10px;">${role.icon}</div>
+                    <div style="font-size:16px;color:${role.color};font-weight:bold;">${role.name}</div>
+                    <div style="font-size:14px;color:#333;font-style:italic;margin-bottom:5px;">"${role.title}"</div>
+                    <div style="font-size:12px;color:#666;text-align:center;">${role.desc}</div>
+                `;
+                puzzlePiece.onclick = function() {
+                    this.style.transform = 'scale(1.1) rotate(2deg)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1) rotate(0deg)';
+                    }, 300);
+                    alert(`🎯 ${role.name} —— "${role.title}"\n\n${role.task}`);
+                };
+                container.appendChild(puzzlePiece);
+            });
         }
         
         function showTeacherTab(tabName) {
@@ -775,27 +1029,37 @@
             const checkboxes = document.querySelectorAll('input[name="craft"]:checked');
             const selected = Array.from(checkboxes).map(cb => cb.value);
             
-            if (selected.length === 0) {
-                alert('请至少选择一项！');
-                return;
-            }
-            
-            const correctAnswers = ['砖雕', '玉雕', '木雕', '景泰蓝'];
-            const isCorrect = selected.length === correctAnswers.length && 
-                            selected.every(item => correctAnswers.includes(item));
-            
             const resultDiv = document.getElementById('answer-result');
-            if (isCorrect) {
-                resultDiv.innerHTML = '🎉 回答正确！你太棒了！';
-                resultDiv.style.color = '#2E7D32';
-                // 解锁工艺馆
-                unlockGallery();
+            
+            // 正确答案：砖雕、玉雕、木雕、景泰蓝（选任意一个就算对）
+            const correctAnswers = ['砖雕', '玉雕', '木雕', '景泰蓝'];
+            // 错误答案：陶瓷、剪纸
+            const wrongAnswers = ['陶瓷', '剪纸'];
+            
+            // 检查是否只选择了正确答案（至少选一个正确答案，且没有选错误答案）
+            const hasCorrectAnswer = selected.some(a => correctAnswers.includes(a));
+            const hasWrongAnswer = selected.some(a => wrongAnswers.includes(a));
+            
+            if (hasWrongAnswer) {
+                // 选择了错误答案（陶瓷或剪纸）
+                resultDiv.innerHTML = '❌ 陶瓷和剪纸不是我们这节课要学习的内容哦！请选择砖雕、玉雕、木雕或景泰蓝中的任意一个。让我们一起观看视频，开始今天的学习吧！';
+                resultDiv.style.color = '#C62828';
+            } else if (!hasCorrectAnswer) {
+                // 没有选择任何答案
+                resultDiv.innerHTML = '💡 请选择至少一个答案！正确答案是：砖雕、玉雕、木雕、景泰蓝中的任意一个。';
+                resultDiv.style.color = '#FF9800';
+                return; // 不解锁，重新选择
             } else {
-                resultDiv.innerHTML = '❌ 回答错误，请再想想！正确答案是：砖雕、玉雕、木雕、景泰蓝';
-                resultDiv.style.color = '#C23B22';
+                // 选择了至少一个正确答案
+                resultDiv.innerHTML = '🎉 太棒了！你选对了！砖雕、玉雕、木雕、景泰蓝都是我们这节课要学习的传统工艺。让我们一起观看视频，开始今天的学习吧！';
+                resultDiv.style.color = '#2E7D32';
             }
+            
+            // 解锁工艺馆
+            unlockGallery();
             
             // 保存回答
+            const isCorrect = hasCorrectAnswer && !hasWrongAnswer;
             const answers = JSON.parse(localStorage.getItem('videoAnswers') || '[]');
             answers.push({ student: currentStudent, answer: selected.join(', '), time: new Date().toLocaleString(), correct: isCorrect });
             localStorage.setItem('videoAnswers', JSON.stringify(answers));
@@ -901,7 +1165,7 @@
                         <div style="margin-top:20px;display:flex;gap:20px;justify-content:center;">
                             <button class="btn btn-secondary" onclick="prevStep()">← 返回看全貌</button>
                             ${work.skipVideo ? 
-                                `<button class="btn btn-gold" onclick="completeWork()">完成学习 →</button>` :
+                                `<button class="btn btn-gold" onclick="nextStep()">了解技法工序 →</button>` :
                                 `<button class="btn btn-gold" onclick="nextStep()">观看视频讲解 →</button>`
                             }
                         </div>
@@ -922,7 +1186,7 @@
                         </div>
                         <div style="margin-top:20px;display:flex;gap:20px;justify-content:center;">
                             <button class="btn btn-secondary" onclick="prevStep()">← 返回听故事</button>
-                            <button class="btn btn-gold" onclick="completeWork()">完成学习 →</button>
+                            <button class="btn btn-gold" onclick="nextStep()">了解技法工序 →</button>
                         </div>
                     </div>
                 `;
@@ -944,11 +1208,35 @@
                         };
                     }
                 }, 100);
+            } else if (currentStep === 5) {
+                content.innerHTML = `
+                    <div style="text-align:center;">
+                        <h2 style="font-size:28px;color:#C23B22;margin-bottom:20px;">⚙️ 技法与制作工序</h2>
+                        <div style="max-width:800px;margin:0 auto;background:white;border-radius:24px;padding:30px;box-shadow:0 8px 30px rgba(0,0,0,0.1);">
+                            <h3 style="color:#C23B22;margin-bottom:20px;">${work.name}</h3>
+                            <div style="text-align:left;">
+                                ${work.technique ? `<div style="margin-bottom:20px;">
+                                    <h4 style="color:#8B4513;font-size:18px;margin-bottom:10px;">🎯 主要技法</h4>
+                                    <p style="font-size:16px;color:#6B3E26;line-height:1.8;">${work.technique}</p>
+                                </div>` : ''}
+                                ${work.process ? `<div>
+                                    <h4 style="color:#8B4513;font-size:18px;margin-bottom:10px;">📋 制作工序</h4>
+                                    <ol style="font-size:16px;color:#6B3E26;line-height:2;">${work.process}</ol>
+                                </div>` : ''}
+                                ${!work.technique && !work.process ? `<p style="font-size:16px;color:#999;">该作品的技法与工序信息正在整理中...</p>` : ''}
+                            </div>
+                        </div>
+                        <div style="margin-top:20px;display:flex;gap:20px;justify-content:center;">
+                            <button class="btn btn-secondary" onclick="prevStep()">← 返回${work.skipVideo ? '听故事' : '看视频'}</button>
+                            <button class="btn btn-gold" onclick="completeWork()">完成学习 →</button>
+                        </div>
+                    </div>
+                `;
             }
         }
         
         function nextStep() {
-            if (currentStep < 4) {
+            if (currentStep < 5) {
                 currentStep++;
                 renderStep();
             }
@@ -1183,9 +1471,9 @@
         
         function startDetective() {
             const questions = [
-                { img: '玉雕全.jpg', options: ['梁山聚义', '大禹治水', '橄榄核舟'], answer: 0 },
-                { img: 'https://picsum.photos/seed/detective2/400/400', options: ['梁山聚义', '大禹治水', '文姬归汉'], answer: 1 },
-                { img: 'https://picsum.photos/seed/detective3/400/400', options: ['木雕', '景泰蓝', '玉雕'], answer: 1 }
+                { img: '玉雕全.jpg', options: ['梁山聚义', '大禹治水', '橄榄核舟'], answer: 1 },
+                { img: '砖雕全.jpg', options: ['梁山聚义', '大禹治水', '文姬归汉'], answer: 0 },
+                { img: '文姬全.jpg', options: ['木雕', '景泰蓝', '玉雕'], answer: 0 }
             ];
             
             let current = 0;
@@ -1222,13 +1510,13 @@
         
         function startMatching() {
             const items = [
-                { id: '1', type: 'image', name: '梁山聚义', img: '玉雕局.jpg' },
+                { id: '1', type: 'image', name: '梁山聚义', img: '砖雕全.jpg' },
                 { id: '1', type: 'name', name: '梁山聚义' },
-                { id: '2', type: 'image', name: '大禹治水', img: '文姬局部.jpg' },
+                { id: '2', type: 'image', name: '大禹治水', img: '玉雕全.jpg' },
                 { id: '2', type: 'name', name: '大禹治水' },
-                { id: '3', type: 'image', name: '景泰蓝', img: '砖雕全.jpg' },
+                { id: '3', type: 'image', name: '景泰蓝', img: '蝴蝶全面.jpg' },
                 { id: '3', type: 'name', name: '景泰蓝' },
-                { id: '4', type: 'image', name: '木雕', img: '蝴蝶全面.jpg' },
+                { id: '4', type: 'image', name: '木雕', img: '文姬全.jpg' },
                 { id: '4', type: 'name', name: '木雕' }
             ];
             
@@ -1281,13 +1569,13 @@
                         }
                     } else {
                         // 匹配失败
+                        const prevCard = document.getElementById(`match-${selected}`);
                         setTimeout(() => {
-                            document.getElementById(`match-${selected}`).style.background = 'white';
-                            card.style.background = 'white';
+                            if (prevCard) prevCard.style.background = 'white';
+                            if (card) card.style.background = 'white';
                         }, 500);
                     }
                     selected = null;
-                    render();
                 }
             };
             
@@ -1363,29 +1651,40 @@
             let count = 0;
             
             const medals = {
-                zhuan: { name: '🧱 砖雕小匠', condition: '完成砖雕馆' },
-                yu: { name: '💎 玉雕小匠', condition: '完成玉雕馆' },
-                mu: { name: '🪵 木雕小匠', condition: '完成两件木雕' },
-                jing: { name: '🏺 景泰蓝小匠', condition: '完成景泰蓝馆' },
-                share: { name: '🎤 分享小达人', condition: '完成分享交流' }
+                gallery: { name: '🏛️ 分馆讲解勋章', condition: '完成所有工艺馆学习', icon: '🏛️', id: 'gallery' },
+                mindmap1: { name: '🧠 思维导图勋章 ①', condition: '局部记录员', icon: '🔍', id: 'mindmap-1' },
+                mindmap2: { name: '🧠 思维导图勋章 ②', condition: '形貌记录员', icon: '📷', id: 'mindmap-2' },
+                mindmap3: { name: '🧠 思维导图勋章 ③', condition: '故事记录员', icon: '📖', id: 'mindmap-3' },
+                mindmap4: { name: '🧠 思维导图勋章 ④', condition: '技法观察员', icon: '👷', id: 'mindmap-4' },
+                share: { name: '💬 "我学会了"表达勋章', condition: '完成分享交流', icon: '💬', id: 'share' },
+                game: { name: '🎮 游戏达人勋章', condition: '完成所有游戏挑战', icon: '🎮', id: 'game' }
             };
             
             Object.keys(medals).forEach(key => {
                 const medal = medals[key];
-                const card = document.getElementById('medal-' + key);
+                const card = document.getElementById('medal-' + medal.id);
+                if (!card) return;
                 let unlocked = false;
                 
-                if (key === 'zhuan' && studentProgress.zhuan && studentProgress.zhuan.length > 0) unlocked = true;
-                if (key === 'yu' && studentProgress.yu && studentProgress.yu.length > 0) unlocked = true;
-                if (key === 'mu' && studentProgress.mu && studentProgress.mu.length >= 2) unlocked = true;
-                if (key === 'jing' && studentProgress.jing && studentProgress.jing.length >= 4) unlocked = true;
+                if (key === 'gallery') {
+                    unlocked = studentProgress.zhuan && studentProgress.zhuan.length > 0 &&
+                               studentProgress.yu && studentProgress.yu.length > 0 &&
+                               studentProgress.mu && studentProgress.mu.length >= 2 &&
+                               studentProgress.jing && studentProgress.jing.length >= 4;
+                }
+                if (key.startsWith('mindmap') && studentProgress.mindmap) {
+                    const mindmapCount = parseInt(studentProgress.mindmap) || 0;
+                    const mindmapIndex = parseInt(key.replace('mindmap', ''));
+                    unlocked = mindmapIndex <= mindmapCount;
+                }
                 if (key === 'share' && studentProgress.shared) unlocked = true;
+                if (key === 'game' && studentProgress.games && studentProgress.games.length >= 3) unlocked = true;
                 
                 if (unlocked) {
                     count++;
                     card.innerHTML = `
-                        <div style="font-size:60px;margin-bottom:10px;" class="medal-shine">${medal.name.split(' ')[0]}</div>
-                        <h3 style="font-size:20px;color:#C23B22;margin-bottom:10px;">${medal.name.split(' ')[1]}</h3>
+                        <div style="font-size:60px;margin-bottom:10px;" class="medal-shine">${medal.icon}</div>
+                        <h3 style="font-size:16px;color:#C23B22;margin-bottom:10px;">${medal.name}</h3>
                         <p style="font-size:14px;color:#666;">${medal.condition}</p>
                     `;
                     card.classList.remove('locked');
@@ -1395,12 +1694,12 @@
             // 工艺传承人勋章
             const heroCard = document.getElementById('medal-hero');
             const certBtn = document.getElementById('cert-btn');
-            if (count >= 5) {
+            if (count >= 7) {
                 count++;
                 heroCard.innerHTML = `
                     <div style="font-size:60px;margin-bottom:10px;" class="medal-shine">🏅</div>
-                    <h3 style="font-size:20px;color:#C23B22;margin-bottom:10px;">工艺传承人</h3>
-                    <p style="font-size:14px;color:#666;">集齐5枚勋章</p>
+                    <h3 style="font-size:18px;color:#C23B22;margin-bottom:10px;">工艺传承人</h3>
+                    <p style="font-size:14px;color:#666;">集齐所有勋章</p>
                 `;
                 heroCard.classList.remove('locked');
                 certBtn.classList.remove('locked');
