@@ -197,8 +197,8 @@
                 
                 <!-- 导航标签 -->
                 <div class="nav-tabs">
-                    <div class="nav-tab active" onclick="showHomeTab('video')">🎬 视频导入</div>
-                    <div class="nav-tab" onclick="showHomeTab('puzzle')">🧩 导学拼图</div>
+                    <div class="nav-tab active" onclick="showHomeTab('video')">📚 课堂导入</div>
+                    <div class="nav-tab" onclick="showHomeTab('puzzle')">🧩 合作探艺</div>
                     <div class="nav-tab" onclick="showHomeTab('gallery')">🎨 工艺馆</div>
                     <div class="nav-tab" onclick="showHomeTab('compare')">🏛️ 场馆PK</div>
                     <div class="nav-tab" onclick="showHomeTab('games')">🎮 游戏闯关</div>
@@ -248,14 +248,51 @@
                     </div>
                 </div>
                 
-                <!-- 导学拼图 -->
+                <!-- 合作探艺 -->
                 <div id="tab-puzzle" class="tab-content" style="display:none;">
-                    <div style="max-width:800px;margin:0 auto;">
-                        <h2 style="color:#8B4513;margin-bottom:20px;">🧩 导学拼图</h2>
-                        <p style="color:#5D4037;margin-bottom:20px;">让我们通过拼图游戏来认识今天要学习的四种传统工艺！</p>
-                        <div id="puzzle-container" style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;"></div>
-                        <div id="puzzle-hint" style="margin-top:20px;padding:15px;background:#FFF8E1;border-radius:10px;color:#8B4513;">
-                            <strong>💡 提示：</strong>点击拼图块，将它们拼在一起，了解传统工艺的特点！
+                    <div style="max-width:900px;margin:0 auto;">
+                        <h2 style="color:#8B4513;margin-bottom:20px;">🧩 合作探艺</h2>
+                        <p style="color:#5D4037;margin-bottom:20px;">四人小组合作探究传统工艺，每位同学担任不同角色，共同完成学习任务！</p>
+                        
+                        <h3 style="color:#C23B22;margin-top:30px;margin-bottom:15px;">👥 四人小组岗位职责</h3>
+                        <div id="puzzle-container" style="display:flex;flex-wrap:wrap;justify-content:center;gap:15px;"></div>
+                        
+                        <div style="background:#E8F5E9;border-radius:16px;padding:20px;margin-top:30px;">
+                            <h3 style="color:#2E7D32;margin-bottom:15px;">📋 课堂流程</h3>
+                            <div style="display:flex;gap:20px;flex-wrap:wrap;">
+                                <div style="flex:1;min-width:250px;background:white;border-radius:10px;padding:15px;">
+                                    <div style="font-size:24px;margin-bottom:10px;">🔍 前期</div>
+                                    <p style="color:#666;font-size:14px;">讲解员、点评员分头搜集资料，把有用内容提供给绘图员和记录员。</p>
+                                </div>
+                                <div style="flex:1;min-width:250px;background:white;border-radius:10px;padding:15px;">
+                                    <div style="font-size:24px;margin-bottom:10px;">✏️ 中期</div>
+                                    <p style="color:#666;font-size:14px;">绘图员绘制导图，记录员整理书面内容。</p>
+                                </div>
+                                <div style="flex:1;min-width:250px;background:white;border-radius:10px;padding:15px;">
+                                    <div style="font-size:24px;margin-bottom:10px;">🎤 后期</div>
+                                    <p style="color:#666;font-size:14px;">讲解员整理话术上台讲解，讲解完毕，点评员利用网站查漏补缺、拓展补充。</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 思维导图模板占位框 -->
+                        <div style="margin-top:30px;">
+                            <h3 style="color:#C23B22;margin-bottom:15px;">🧠 思维导图模板</h3>
+                            <div id="mindmap-placeholder" style="width:100%;height:300px;border:3px dashed #FF6B6B;border-radius:16px;background:#FFF5F5;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+                                <div style="font-size:48px;margin-bottom:10px;">📋</div>
+                                <p style="color:#999;font-size:16px;">思维导图模板展示区域</p>
+                                <p style="color:#ccc;font-size:12px;">(点击占位框可更换图片)</p>
+                            </div>
+                        </div>
+                        
+                        <!-- 文字记录员记录表模板占位框 -->
+                        <div style="margin-top:30px;">
+                            <h3 style="color:#C23B22;margin-bottom:15px;">✏️ 文字记录员记录表模板</h3>
+                            <div id="notebook-placeholder" style="width:100%;height:300px;border:3px dashed #4ECDC4;border-radius:16px;background:#F0FFF8;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+                                <div style="font-size:48px;margin-bottom:10px;">📝</div>
+                                <p style="color:#999;font-size:16px;">文字记录员记录表模板展示区域</p>
+                                <p style="color:#ccc;font-size:12px;">(点击占位框可更换图片)</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -919,35 +956,35 @@
             
             const roles = [
                 { 
-                    name: '局部记录员', 
-                    title: '细节小放大镜', 
-                    icon: '🔍', 
-                    desc: '观察细节、颜色、花纹',
-                    task: '像用放大镜看蚂蚁一样，盯着作品的小角落！\n• 颜色：作品用了哪些颜色？\n• 花纹：找找有什么特别的图案？\n• 简笔画：试着画一个小部位！',
+                    name: '导图绘图员', 
+                    title: '思维导图设计师', 
+                    icon: '🧠', 
+                    desc: '绘制工艺思维导图',
+                    task: '收集小组全部资料，提炼两三个字的关键词，结合自己的创意，绘制工艺思维导图。',
                     color: '#FF6B6B' 
                 },
                 { 
-                    name: '形貌记录员', 
-                    title: '整体小相机', 
-                    icon: '📷', 
-                    desc: '观察整体形状、猜材质',
-                    task: '把作品当成一个小模特，给它拍张"全身照"！\n• 画轮廓：用简单线条画作品的整体形状\n• 猜材质：它最像生活中的什么？',
+                    name: '文字记录员', 
+                    title: '笔记整理师', 
+                    icon: '✏️', 
+                    desc: '整理完整笔记',
+                    task: '参照书本与资料卡片，工整记录工艺品的技法、制作步骤、用途、色彩、纹样，整理完整笔记。',
                     color: '#4ECDC4' 
                 },
                 { 
-                    name: '故事记录员', 
-                    title: '情节记录员', 
-                    icon: '📖', 
-                    desc: '找故事、讲寓意',
-                    task: '从作品里找"小剧情"，当一回小小说书人！\n• 故事：作品讲了什么故事？\n• 寓意：这些图案有什么含义？',
+                    name: '小小讲解员', 
+                    title: '成果展示员', 
+                    icon: '🎤', 
+                    desc: '上台展示分享',
+                    task: '前期协助绘图员、记录员查找资料，配合组员完成任务；最后留出2分钟梳理讲解内容，上台展示分享小组成果。',
                     color: '#45B7D1' 
                 },
                 { 
-                    name: '技法观察员', 
-                    title: '小手工艺人', 
-                    icon: '👷', 
-                    desc: '猜技法、想步骤',
-                    task: '假装自己是做这件作品的小工匠！\n• 技法：用了哪些制作方法？\n• 步骤：想想怎么做出来的？',
+                    name: '资料点评员', 
+                    title: '知识拓展员', 
+                    icon: '🔍', 
+                    desc: '查漏补缺拓展',
+                    task: '负责搜集补充素材，检查笔记和导图；待讲解员汇报结束后上台，借助学习网站，补充小组资料里缺失的知识点，完善内容。',
                     color: '#96CEB4' 
                 }
             ];
